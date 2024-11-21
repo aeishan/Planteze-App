@@ -8,25 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:946483181486:android:c86deee10ed2ec186cba3f",
-        "android_client_info": {
-          "package_name": "com.example.planetze"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBC4pBPKLbxg0QqwnHB6N4Nrj5xAwDjdys"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:946483181486:android:4a9d75e2ad3dbfe16cba3f",
         "android_client_info": {
           "package_name": "com.plantezeapp"

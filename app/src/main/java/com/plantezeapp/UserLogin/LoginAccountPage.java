@@ -1,12 +1,12 @@
 package com.plantezeapp.UserLogin;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,53 +29,36 @@ import com.plantezeapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import kotlinx.coroutines.SchedulerTaskKt;
-
-public class RegisterAccountPage extends AppCompatActivity {
-
-    private EditText editTextFName, editTextLName, editTextEmail, editTextPassword;
-    private Button registerButton;
-    private TextView signinHereText;
+public class LoginAccountPage extends AppCompatActivity {
+    private EditText editTextEmail, editTextPassword;
+    private Button loginButton, resetPassButton;
+    private TextView signupHereText;
 
     private FirebaseAuth mAuth;
 
 
     @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            mAuth.signOut();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Checks the user
-            finish();
-        }
-    }
-
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mAuth = FirebaseAuth.getInstance();
 
-
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register_account_page);
+        setContentView(R.layout.activity_login_account_page);
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        editTextFName = findViewById(R.id.editTextFName);
-        editTextLName = findViewById(R.id.editTextLName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
-        registerButton = findViewById(R.id.registerButton);
-        signinHereText = findViewById(R.id.signinHereText);
+        loginButton = findViewById(R.id.loginButton);
+        signupHereText = findViewById(R.id.signupHereText);
+        resetPassButton = findViewById(R.id.resetPassButton);
 
-
-        registerButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = editTextEmail.getText().toString().trim();
@@ -96,47 +79,42 @@ public class RegisterAccountPage extends AppCompatActivity {
                     editTextPassword.setError("Password must be equal to 6 characters or less.");
                 }
 
+
                 //Firebase Authentication
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    //Send verification link when login successful
-                                    FirebaseUser muser = mAuth.getCurrentUser();
-                                    muser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Toast.makeText(RegisterAccountPage.this, "Please verify your email.", Toast.LENGTH_SHORT).show();
-
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(RegisterAccountPage.this, "Verification Email has not been sent." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
-                                        }
-                                    });
-
-                                    //Registration is successful
-                                    Toast.makeText(RegisterAccountPage.this, "User created.", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent (getApplicationContext(), WelcomePage.class);
+                                    Toast.makeText(LoginAccountPage.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent (getApplicationContext(), MainActivity.class); //This class needs to be changed to the class with the maindashboard
                                     startActivity(intent);
 
                                 } else {
-                                    Toast.makeText(RegisterAccountPage.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginAccountPage.this, "Invalid email or password." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
                                 }
                             }
                         });
             }
         });
-
-        signinHereText.setOnClickListener(new View.OnClickListener() {
+        signupHereText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LoginAccountPage.class));
+                startActivity(new Intent(getApplicationContext(), RegisterAccountPage.class));
             }
         });
 
+        //Reset password
+        resetPassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginAccountPage.this, "You can reset your password now.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginAccountPage.this, ConfirmationSignupPage.class));
+            }
+        });
+
+
     }
+
 }
