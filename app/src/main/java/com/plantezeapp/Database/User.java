@@ -26,40 +26,76 @@ import com.google.firebase.auth.AuthResult;
 import com.plantezeapp.MainActivity;
 import com.plantezeapp.R;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseError;
 
 
-public class UserDatabase{
-    
+public class User{
+    private String uID;
+    private String email;
+    private CarbonFootprint carbonFootprint;
+    private EcoTracker ecoTracker;
 
+    private Boolean done;
 
-     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference reference  = database.getInstance("https://planetze-app-tracker-default-rtdb.firebaseio.com/").getReference();
+    // Firebase reference
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference mDatabase;
 
+    // Constructor
+    public User(String uID, String email) {
+        this.uID = uID;
+        this.email = email;
+        this.done = false;
+        this.carbonFootprint = new CarbonFootprint();
+        this.ecoTracker = new EcoTracker();
+        this.mDatabase = database.getReference("users").child(uID);
+    }
 
+    public void saveToFirebase() {
+        mDatabase.child("email").setValue(email);
+        mDatabase.child("carbonFootprint").setValue(carbonFootprint.toMap());  // Assuming toMap() method exists
+        mDatabase.child("ecoTracker").setValue(ecoTracker.toMap());  // Assuming toMap() method exists
+    }
 
+    public String getuID() {
+        return uID;
+    }
 
+    public void setuID(String uID) {
+        this.uID = uID;
+    }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public CarbonFootprint getCarbonFootprint() {
+        return carbonFootprint;
+    }
+
+    public EcoTracker getEcoTracker() {
+        return ecoTracker;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
 }
 
-//Connection to the realtime data base
-
-//Read all database
-
-//Fetch specific user database for carbon footprint and eco tracker
-
-//Get all carbonfoot print answers so, can calculate carbon emissions and eco-tracker answers
-
-//Onbaording setting true once the data has been fetched
 
 
-//Read and Write database (eco-tracker needs to be able to edit answers)
 
 
 
