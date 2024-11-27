@@ -36,6 +36,10 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-database")
+    testImplementation ("org.mockito:mockito-core:5.5.0")
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation ("androidx.test.ext:junit:1.1.5")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
