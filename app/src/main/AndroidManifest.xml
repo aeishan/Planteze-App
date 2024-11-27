@@ -21,7 +21,48 @@
             android:name=".UserLogin.LoginAccountPage"
             android:exported="false" />
         <activity
-            android:name=".UserLogin.RegisterAccountPage"
+            android:name=".Track.ShoppingItems.Other"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Bills"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Electronics"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Clothing"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.Flight"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.Walking"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.PublicTransportation"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.PersonalVehicle"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Transportation"
+            android:exported="false"
+            android:label="@string/title_activity_transportation"
+            android:theme="@style/Theme.PlantezeApp" />
+        <activity
+            android:name=".Track.Shopping"
+            android:exported="false" />
+        <activity
+            android:name=".Track.FoodConsumption"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Track"
+            android:exported="false" />
+        <activity
+            android:name=".Tracker.Track"
+            android:exported="false" />
+        <activity
+            android:name="com.plantezeapp.UserLogin.RegisterAccountPage"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
