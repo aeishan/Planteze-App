@@ -29,7 +29,6 @@ import com.plantezeapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import com.plantezeapp.Database.FirebaseHelper.FirebaseCallback;
 
 public class LoginAccountPage extends AppCompatActivity {
     private EditText editTextEmail, editTextPassword;
@@ -95,6 +94,10 @@ public class LoginAccountPage extends AppCompatActivity {
 
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     //Onboarding code
+
+
+
+
 
 
 
