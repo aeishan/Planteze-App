@@ -16,25 +16,27 @@ public class FirebaseHelper {
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void saveUser(User user) {
+    private User user;
+
+    public void saveUser() {
         DatabaseReference userRef = databaseReference.child("users").child(user.getuID());
         userRef.child("email").setValue(user.getEmail());
         userRef.child("carbonFootprint").setValue(user.getCarbonFootprint().toMap());
         userRef.child("ecoTracker").setValue(user.getEcoTracker().toMap());
     }
 
-    public void fetchUser(String uID, final FirebaseCallback<User> callback) {
-        DatabaseReference userRef = databaseReference.child("users").child(uID);
+    public void fetchUser(String userID){
+        DatabaseReference userRef = databaseReference.child("users").child(userID);
+
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                callback.onCallback(user);
+            public void onDataChange(DataSnapshot dataSnaptshot) {
+                User user = dataSnaptshot.getValue(User.class);
+                System.out.println("User fetched successfully" + user);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.err.println("Error: " + databaseError.getMessage());
+                System.out.println("User not found base " + databaseError.getCode());
             }
         });
     }
@@ -44,34 +46,23 @@ public class FirebaseHelper {
         carbonRef.setValue(carbonFootprint.toMap());
     }
 
-    public void fetchCarbonFootprintAnswer(String userId, String questionId, final FirebaseCallback<String> callback) {
-        DatabaseReference answerRef = databaseReference.child("users").child(userId).child("carbonFootprint").child("answers").child(questionId);
-        answerRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String answer = dataSnapshot.getValue(String.class);
-                callback.onCallback(answer);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.err.println("Error: " + databaseError.getMessage());
-            }
-        });
-    }
-
     public void saveEcoTracker(String userId, EcoTracker ecoTracker) {
         DatabaseReference ecoRef = databaseReference.child("users").child(userId).child("ecoTracker");
         ecoRef.setValue(ecoTracker.toMap());
     }
 
-    public void fetchEcoTrackerActivity(String userId, String category, String activityId, final FirebaseCallback<Map<String, Object>> callback) {
+    public void fetchEcoTrackerActivity(String userId, String category, String activityId) {
         DatabaseReference activityRef = databaseReference.child("users").child(userId).child("ecoTracker").child(category).child(activityId);
+
         activityRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Object> activity = (Map<String, Object>) dataSnapshot.getValue();
-                callback.onCallback(activity);
+                if (activity != null) {
+                    System.out.println("EcoTracker activity is fetched successfully" + activity);
+                } else {
+                    System.out.println("No activity data found.");
+                }
             }
 
             @Override
@@ -90,15 +81,9 @@ public class FirebaseHelper {
         });
     }
 
-
     public void updateOnboardingStatus(String userId, boolean isDone) {
         DatabaseReference userRef = databaseReference.child("users").child(userId);
         userRef.child("onboarding").setValue(isDone);
-    }
-
-    //Callback interface
-    public interface FirebaseCallback<T> {
-        void onCallback(T result);
     }
 
 }
