@@ -14,7 +14,7 @@ class HabitFilter : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_habit_filter)  // Change this to the correct layout for your activity
+        setContentView(R.layout.activity_habit_filter)
 
         // Get buttons & ImageViews
         val transportationFilter: ImageView = findViewById(R.id.TransportationSelected_filter)
@@ -49,12 +49,15 @@ class HabitFilter : AppCompatActivity() {
 
         // Co2 Reduction Filter NOT DONE
         co2ReductionFilter.setOnClickListener {
-            // Handle logic here for CO2 reduction filter
+            //Put energy & consumption together
+
         }
 
         // Past Activities Filter NOT DONE
         activitiesFilter.setOnClickListener {
-            // Handle logic here for past activities filter
+
+            //hashmap (activity, response)
+
         }
 
         // Navigate from HabitFilter to HabitCreation

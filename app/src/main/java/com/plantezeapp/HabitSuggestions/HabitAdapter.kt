@@ -21,6 +21,7 @@ class HabitAdapter(
         val deleteButton: ImageView = view.findViewById(R.id.deleteButton)
         val completedHabitButton: Button = view.findViewById(R.id.completed_habit_button)
         val habitDaysCompleted: TextView = view.findViewById(R.id.habit_daysCompleted)
+        val completedHabitText: TextView = view.findViewById(R.id.completedHabitText)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
@@ -33,6 +34,7 @@ class HabitAdapter(
         holder.habitTitle.text = habit.name
         holder.habitCategory.text = habit.category
         holder.habitDaysCompleted.text = habit.completionCount.toString() // Show completion count
+        holder.completedHabitText.text = "Completed Habit: "
 
         holder.deleteButton.setOnClickListener {
             onDeleteClick(habit)  // Call the delete function when the delete button is clicked
