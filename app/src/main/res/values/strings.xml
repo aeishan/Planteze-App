@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Planteze App</string>
+    <string name="app_name">Firebase Auth</string>
+    <string name="login">Login</string>
+    <string name="register">Register!</string>
+    <string name="email">email</string>
+    <string name="password">passsword</string>
 </resources>

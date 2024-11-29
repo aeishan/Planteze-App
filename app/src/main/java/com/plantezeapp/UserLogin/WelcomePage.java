@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.plantezeapp.R;
 
 public class WelcomePage extends AppCompatActivity {
-    private Button moveToRegister;
+    private Button moveToRegister, moveToLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,20 @@ public class WelcomePage extends AppCompatActivity {
             return insets;
         });
         moveToRegister=findViewById(R.id.MoveToRegister);
+        moveToLogin=findViewById(R.id.MoveToLogin);
+
         moveToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(WelcomePage.this, RegisterAccountPage.class);
+                startActivity(intent);
+            }
+        });
+
+        moveToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WelcomePage.this, LoginAccountPage.class);
                 startActivity(intent);
             }
         });
