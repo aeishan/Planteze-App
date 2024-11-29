@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#d8dbe2"
-    tools:context=".HabitSuggestions.HabitCreation">
+    tools:context=".HabitSuggestions.Activities.HabitCreation">
 
     <LinearLayout
         android:id="@+id/ll_textviews_update"
@@ -57,4 +57,21 @@
 
     </LinearLayout>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/back_CreationToMenu"
+        android:layout_width="135dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#373f51"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="Go Back"
+        android:textColor="@android:color/white" />
 </RelativeLayout>
