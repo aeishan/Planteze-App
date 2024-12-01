@@ -33,6 +33,7 @@ class HabitFilter : AppCompatActivity() {
         val confirmButton: Button = findViewById(R.id.btn_confirm_filter)
         val backButton: Button = findViewById(R.id.back_filterToCreation)
 
+
         transportationFilter.setOnClickListener {
             transportationFilter.isSelected = !transportationFilter.isSelected
             toggleCategory("Transportation", transportationFilter)
@@ -53,14 +54,26 @@ class HabitFilter : AppCompatActivity() {
             toggleCategory("Consumption", consumptionFilter)
         }
 
-        // CO2 reduction filter NOT DONE
         co2ReductionFilter.setOnClickListener {
             /* val databaseReference = FirebaseDatabase.getInstance()
                 .getReference("users/$userId/ecoTracker/emissionByDateAndCat/dd-mm-yy") */
+            val currentUser = FirebaseAuth.getInstance().currentUser //check this out, fetch.user?
+            if (currentUser !=null) {
+                fetchAndApplyFirebaseDataEmissions(
+                    currentUser.uid,
+                    transportationFilter,
+                    energyFilter,
+                    foodFilter,
+                    consumptionFilter
+                )
+            } else {
+                Log.e("HabitFilter", "No authenticated user found.")
+            }
+
         }
 
         activitiesFilter.setOnClickListener {
-            val currentUser = FirebaseAuth.getInstance().currentUser
+            val currentUser = FirebaseAuth.getInstance().currentUser //check this out, fetch.user?
             if (currentUser != null) {
                 fetchAndApplyFirebaseDataActivities(
                     currentUser.uid,
@@ -99,6 +112,85 @@ class HabitFilter : AppCompatActivity() {
             selectedCategories.remove(category)
         }
         Log.d("HabitFilter", "Updated selected categories: $selectedCategories")
+    }
+
+    private fun fetchAndApplyFirebaseDataEmissions(
+        userId: String,
+        transportationFilter: ImageView,
+        energyFilter: ImageView,
+        foodFilter: ImageView,
+        consumptionFilter: ImageView,
+    ) {
+        // Reference to the emission data for the current user
+        val databaseReference = FirebaseDatabase.getInstance()
+            .getReference("users/$userId/ecoTracker/emissionByDateAndCat")
+
+        // Listen for the latest data from the database
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                try {
+                    // Find latest date by comparing the keys (dd-mm-yy format)
+                    var latestDate: String? = null
+                    var maxTransport = 0.0
+                    var maxFood = 0.0
+                    var maxOther = 0.0
+
+                    for (dateSnapshot in snapshot.children) {
+                        val date = dateSnapshot.key
+                        // Find the latest date
+                        if (date != null && (latestDate == null || compareDates(date, latestDate) > 0)) {
+                            latestDate = date
+                        }
+                    }
+
+                    // If latest date found, fetch emissions for that day
+                    if (latestDate != null) {
+                        val emissionData = snapshot.child(latestDate)
+                        maxTransport = emissionData.child("Transportation").getValue(Double::class.java) ?: 0.0
+                        maxFood = emissionData.child("Food").getValue(Double::class.java) ?: 0.0
+                        maxOther = emissionData.child("Other").getValue(Double::class.java) ?: 0.0
+                    }
+
+                    // Compare emissions & apply highest category filter
+                    when {
+                        maxTransport >= maxFood && maxTransport >= maxOther -> {
+                            transportationFilter.isSelected = true
+                            toggleCategory("Transportation", transportationFilter)
+                        }
+                        maxFood >= maxTransport && maxFood >= maxOther -> {
+                            foodFilter.isSelected = true
+                            toggleCategory("Food", foodFilter)
+                        }
+                        else -> {
+                            energyFilter.isSelected = true
+                            consumptionFilter.isSelected = true
+                            toggleCategory("Energy", energyFilter)
+                            toggleCategory("Consumption", consumptionFilter)
+                        }
+                    }
+
+                } catch (e: Exception) {
+                    Log.e("HabitFilter", "Error fetching or parsing Firebase emission data: ${e.message}")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("HabitFilter", "Firebase Database error: ${error.message}")
+            }
+        })
+    }
+
+    // Helper function to compare dates in dd-mm-yy format
+    private fun compareDates(date1: String, date2: String): Int {
+        val dateParts1 = date1.split("-").map { it.toInt() }
+        val dateParts2 = date2.split("-").map { it.toInt() }
+
+        // Compare year, month, day
+        return when {
+            dateParts1[2] != dateParts2[2] -> dateParts1[2] - dateParts2[2] // Compare year
+            dateParts1[1] != dateParts2[1] -> dateParts1[1] - dateParts2[1] // Compare month
+            else -> dateParts1[0] - dateParts2[0] // Compare day
+        }
     }
 
     private fun fetchAndApplyFirebaseDataActivities(
