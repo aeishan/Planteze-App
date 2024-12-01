@@ -8,6 +8,7 @@ public class CarbonFootprint {
     private Map<String, String> answers;
 
     public CarbonFootprint() {
+
         this.answers = new HashMap<>();
     }
 
@@ -17,19 +18,21 @@ public class CarbonFootprint {
     }
 
     public String getUserId() {
+
         return userId;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
-    public Map<String, String> getAnswers() {
-        return answers;
+        this.userId = userId;
     }
 
     public void setAnswers(Map<String, String> answers) {
         this.answers = answers;
+    }
+
+    public Map<String, String> getAnswers() {
+        return this.answers;
     }
 
     public void setAnswer(String questionId, String answer) {

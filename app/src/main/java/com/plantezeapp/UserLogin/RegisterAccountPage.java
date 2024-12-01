@@ -6,13 +6,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -29,8 +27,6 @@ import com.plantezeapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import kotlinx.coroutines.SchedulerTaskKt;
-
 public class RegisterAccountPage extends AppCompatActivity {
 
     private EditText editTextFName, editTextLName, editTextEmail, editTextPassword;
@@ -38,7 +34,6 @@ public class RegisterAccountPage extends AppCompatActivity {
     private TextView signinHereText;
 
     private FirebaseAuth mAuth;
-
 
     @Override
     public void onStart() {
@@ -49,8 +44,8 @@ public class RegisterAccountPage extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Checks the user
             finish();
         }
-    }
 
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,39 +99,44 @@ public class RegisterAccountPage extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     //Send verification link when login successful
                                     FirebaseUser muser = mAuth.getCurrentUser();
-                                    muser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Toast.makeText(RegisterAccountPage.this, "Please verify your email.", Toast.LENGTH_SHORT).show();
+                                        muser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Toast.makeText(RegisterAccountPage.this, "Please verify your email.", Toast.LENGTH_SHORT).show();
 
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(RegisterAccountPage.this, "Verification Email has not been sent." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(RegisterAccountPage.this, "Verification Email has not been sent." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
-                                        }
-                                    });
+                                            }
+                                        });
 
                                     //Registration is successful
-                                    Toast.makeText(RegisterAccountPage.this, "User created.", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent (getApplicationContext(), WelcomePage.class);
-                                    startActivity(intent);
+                                        Toast.makeText(RegisterAccountPage.this, "User created.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                                        startActivity(intent);
+                                        finish();
+
 
                                 } else {
                                     Toast.makeText(RegisterAccountPage.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+
             }
         });
 
         signinHereText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LoginAccountPage.class));
+                startActivity(new Intent(getApplicationContext(), LoginView.class));
             }
         });
 
     }
+
+
 }
