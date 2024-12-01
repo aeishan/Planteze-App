@@ -99,9 +99,6 @@ public class Tracker extends AppCompatActivity implements FirebaseHelper.UserFet
             totalActivities = user.getEcoTracker().getActivityByDate().get(date);
         }
 
-        //Map<Date, Map<Category, Map<Activity, Specific>>> activityByDate;
-        //Set to 0 if null
-
         for(String category: totalActivities.keySet()){
             Log.d("Test Total Update", category);
             for(String activityId : totalActivities.get(category).keySet()){
