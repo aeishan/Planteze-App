@@ -15,9 +15,7 @@ import com.plantezeapp.R;
 
 public class Track extends AppCompatActivity {
 
-    private Button transportation;
-    private Button food;
-    private Button shopping;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +27,11 @@ public class Track extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Button transportation;
+        Button food;
+        Button shopping;
+        Button back;
 
         transportation=findViewById(R.id.transportation);
         transportation.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +56,15 @@ public class Track extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Track.this, Shopping.class);
+                startActivity(intent);
+            }
+        });
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Track.this, Tracker.class);
                 startActivity(intent);
             }
         });

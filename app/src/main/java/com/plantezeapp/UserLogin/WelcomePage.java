@@ -45,5 +45,6 @@ public class WelcomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }

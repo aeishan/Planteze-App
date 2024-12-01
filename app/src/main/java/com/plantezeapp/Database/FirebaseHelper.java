@@ -1,5 +1,7 @@
 package com.plantezeapp.Database;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
@@ -16,48 +18,60 @@ public class FirebaseHelper {
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void saveUser(User user) {
-        DatabaseReference userRef = databaseReference.child("users").child(user.getuID());
-        userRef.child("email").setValue(user.getEmail());
-        userRef.child("carbonFootprint").setValue(user.getCarbonFootprint().toMap());
-        userRef.child("ecoTracker").setValue(user.getEcoTracker().toMap());
+    private User user;
+
+    public void saveUser(User test) {
+        Log.d("SAVE USER","Begin");
+        DatabaseReference userRef = databaseReference.child("users").child(test.getuID());
+        userRef.child("email").setValue(test.getEmail());
+        Log.d("SAVE USER","Main");
+        if(test.getCarbonFootprint() != null){
+            //userRef.child("carbonFootprint").setValue(test.getCarbonFootprint().toMap());
+            this.saveCarbonFootprint(user.getuID(), user.getCarbonFootprint());
+            Log.d("SAVE USER","Carbon");
+        }
+        if(test.getEcoTracker() != null){
+            this.saveEcoTracker(user.getuID(), user.getEcoTracker());
+            //userRef.child("ecoTracker").setValue(test.getEcoTracker().toMap());
+            Log.d("SAVE USER","Eco");
+        }
+
     }
 
-    public void fetchUser(String uID, final FirebaseCallback<User> callback) {
-        DatabaseReference userRef = databaseReference.child("users").child(uID);
-        userRef.addValueEventListener(new ValueEventListener() {
+    public void fetchUser(String userID, final UserFetchListener listener){
+        DatabaseReference userRef = databaseReference.child("users").child(userID);
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                callback.onCallback(user);
-            }
+                user = dataSnapshot.getValue(User.class);
+                if (user != null) {
+                    System.out.println("User fetched successfully: " + user);
+                    listener.onUserFetched(user);
+                    /*Log.d("Tester","Not Null");
+                    if(user.getEmail() == null){
+                        Log.d("Tester", "Null ID");
+                    }
+                    else{
+                        Log.d("Tester",user.getEmail());
+                    }*/
 
+
+                } else {
+                    listener.onFetchFailed("No user found with ID: " + userID);
+                    //System.out.println("No user found with ID: " + userID);
+                    //Log.d("T","Null");
+                }
+            }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                System.err.println("Error: " + databaseError.getMessage());
+                System.out.println("User not found base " + databaseError.getCode());
             }
         });
     }
-
     public void saveCarbonFootprint(String userId, CarbonFootprint carbonFootprint) {
         DatabaseReference carbonRef = databaseReference.child("users").child(userId).child("carbonFootprint");
         carbonRef.setValue(carbonFootprint.toMap());
-    }
-
-    public void fetchCarbonFootprintAnswer(String userId, String questionId, final FirebaseCallback<String> callback) {
-        DatabaseReference answerRef = databaseReference.child("users").child(userId).child("carbonFootprint").child("answers").child(questionId);
-        answerRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String answer = dataSnapshot.getValue(String.class);
-                callback.onCallback(answer);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.err.println("Error: " + databaseError.getMessage());
-            }
-        });
     }
 
     public void saveEcoTracker(String userId, EcoTracker ecoTracker) {
@@ -65,13 +79,18 @@ public class FirebaseHelper {
         ecoRef.setValue(ecoTracker.toMap());
     }
 
-    public void fetchEcoTrackerActivity(String userId, String category, String activityId, final FirebaseCallback<Map<String, Object>> callback) {
+    public void fetchEcoTrackerActivity(String userId, String category, String activityId) {
         DatabaseReference activityRef = databaseReference.child("users").child(userId).child("ecoTracker").child(category).child(activityId);
+
         activityRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Object> activity = (Map<String, Object>) dataSnapshot.getValue();
-                callback.onCallback(activity);
+                if (activity != null) {
+                    System.out.println("EcoTracker activity is fetched successfully" + activity);
+                } else {
+                    System.out.println("No activity data found.");
+                }
             }
 
             @Override
@@ -90,16 +109,13 @@ public class FirebaseHelper {
         });
     }
 
-
     public void updateOnboardingStatus(String userId, boolean isDone) {
         DatabaseReference userRef = databaseReference.child("users").child(userId);
         userRef.child("onboarding").setValue(isDone);
     }
 
-    //Callback interface
-    public interface FirebaseCallback<T> {
-        void onCallback(T result);
+    public interface UserFetchListener {
+        void onUserFetched(User user);
+        void onFetchFailed(String errorMessage);
     }
-
 }
-

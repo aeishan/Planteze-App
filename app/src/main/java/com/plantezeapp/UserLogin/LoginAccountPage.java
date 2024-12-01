@@ -29,7 +29,8 @@ import com.plantezeapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import com.plantezeapp.Database.FirebaseHelper.FirebaseCallback;
+import com.plantezeapp.Track.Track;
+import com.plantezeapp.Track.Tracker;
 
 public class LoginAccountPage extends AppCompatActivity {
     private EditText editTextEmail, editTextPassword;
@@ -90,7 +91,7 @@ public class LoginAccountPage extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(LoginAccountPage.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent (getApplicationContext(), MainActivity.class); //This class needs to be changed to the class with the maindashboard
+                                    Intent intent = new Intent (getApplicationContext(), Tracker.class); //This class needs to be changed to the class with the maindashboard
                                     startActivity(intent);
 
                                     FirebaseUser user = mAuth.getCurrentUser();

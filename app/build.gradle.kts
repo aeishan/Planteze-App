@@ -35,6 +35,12 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        google()
+    }
+}
+
 dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))

@@ -36,7 +36,7 @@ public class User{
     private String uID;
     private String email;
     private CarbonFootprint carbonFootprint;
-    private EcoTracker ecoTracker;
+    public EcoTracker ecoTracker;
 
     private Boolean done;
 
@@ -52,6 +52,10 @@ public class User{
         this.carbonFootprint = new CarbonFootprint();
         this.ecoTracker = new EcoTracker();
         this.mDatabase = database.getReference("users").child(uID);
+    }
+
+    public User(){
+
     }
 
     public void saveToFirebase() {
