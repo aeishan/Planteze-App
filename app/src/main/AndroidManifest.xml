@@ -18,7 +18,7 @@
             android:name=".UserLogin.ConfirmationSignupPage"
             android:exported="false" />
         <activity
-            android:name=".UserLogin.LoginAccountPage"
+            android:name=".UserLogin.LoginView"
             android:exported="false" />
         <activity
             android:name=".UserLogin.RegisterAccountPage"

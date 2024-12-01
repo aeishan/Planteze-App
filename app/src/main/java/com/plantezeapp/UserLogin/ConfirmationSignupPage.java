@@ -1,6 +1,7 @@
 package com.plantezeapp.UserLogin;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -30,7 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class ConfirmationSignupPage extends AppCompatActivity {
 
     private EditText edit_email;
-    private Button forgotPassButton;
+    private Button forgotPassButton, backButton;
 
     private FirebaseAuth mAuth;
 
@@ -48,6 +49,7 @@ public class ConfirmationSignupPage extends AppCompatActivity {
 
         edit_email  = findViewById(R.id.edit_email);
         forgotPassButton = findViewById(R.id.forgotPassButton);
+        backButton = findViewById(R.id.backButton);
 
         forgotPassButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +67,13 @@ public class ConfirmationSignupPage extends AppCompatActivity {
                 }else{
                     resetPassword(email);
                 }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginView.class));
             }
         });
 

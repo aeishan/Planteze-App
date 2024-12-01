@@ -63,7 +63,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_email" />
 
-
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="93dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="696dp"
+        android:backgroundTint="@color/teal"
+        android:text="Back"
+        android:textColor="@color/black_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
