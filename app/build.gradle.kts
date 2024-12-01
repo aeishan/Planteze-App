@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     id("org.jetbrains.kotlin.android")  // For Kotlin Android support
     id("kotlin-kapt")  // For Kotlin annotation processing (KAPT)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation("com.google.firebase:firebase-database-ktx")
 
     //room
     implementation("androidx.room:room-runtime:2.6.1")

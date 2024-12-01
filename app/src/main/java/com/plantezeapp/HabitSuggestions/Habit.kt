@@ -26,7 +26,7 @@ val habitSuggestions = listOf(
     Habit(name = "Limit air conditioning usage", category = "Energy"),
 
     // Food
-    Habit(name = "Eat a vegetarian meal", category = "Food"),
+    Habit(name = "Cook at home", category = "Food"),
     Habit(name = "Reduce food waste", category = "Food"),
     Habit(name = "Buy local produce", category = "Food"),
     Habit(name = "Use reusable containers for meals", category = "Food"),
