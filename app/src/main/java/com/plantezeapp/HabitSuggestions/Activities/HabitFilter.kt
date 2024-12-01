@@ -50,12 +50,14 @@ class HabitFilter : AppCompatActivity() {
         // Co2 Reduction Filter NOT DONE
         co2ReductionFilter.setOnClickListener {
             //Put energy & consumption together
+            //HashMap<String Date, HashMap<String Category, Double Emission>>
+            //setter = answers
 
         }
 
         // Past Activities Filter NOT DONE
         activitiesFilter.setOnClickListener {
-
+            //Hashmap<Question, Answer>
             //hashmap (activity, response)
 
         }

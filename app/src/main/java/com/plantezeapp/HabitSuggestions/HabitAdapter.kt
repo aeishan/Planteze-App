@@ -38,6 +38,8 @@ class HabitAdapter(
 
         holder.deleteButton.setOnClickListener {
             onDeleteClick(habit)  // Call the delete function when the delete button is clicked
+            //loop dictionary -> go through whcihever is bigger -> values get keys
+            //HashMap<String Date, HashMap<String Category, Double Emission>>
         }
 
         holder.completedHabitButton.setOnClickListener {

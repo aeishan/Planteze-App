@@ -50,8 +50,16 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+
     //room
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+
+    //Mockito
+    testImplementation("org.mockito:mockito-core:5.6.2") // Mockito core library
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0") // Kotlin extensions
+    testImplementation("org.mockito:mockito-android:4.4.0")
+
 }
