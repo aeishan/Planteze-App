@@ -24,12 +24,12 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.on
 
     public boolean checkUserLogin (String email, String password){
         boolean isValid = true;
-        if(TextUtils.isEmpty(email)) {
+        if(isEmpty(email)) {
             mLoginView.setEmailError("Correct email is required.");
             isValid = false;
         }
 
-        if(TextUtils.isEmpty(password)){
+        if(isEmpty(password)){
             mLoginView.setPasswordError("Correct password is required.");
             isValid = false;
 
@@ -39,6 +39,10 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.on
         }
         return isValid;
 
+    }
+
+    private boolean isEmpty(String str) {
+        return str == null || str.isEmpty();
     }
 
     @Override
