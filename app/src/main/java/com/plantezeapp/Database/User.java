@@ -52,6 +52,10 @@ public class User{
         this.mDatabase = database.getReference("users").child(uID);
     }
 
+    public User(){
+        
+    }
+
     public void saveToFirebase() {
         mDatabase.child("email").setValue(email);
         mDatabase.child("carbonFootprint").setValue(carbonFootprint.toMap());  // Assuming toMap() method exists

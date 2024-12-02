@@ -2,6 +2,8 @@ package com.plantezeapp.Database;
 
 import android.util.Log;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
@@ -27,37 +29,33 @@ public class FirebaseHelper {
         Log.d("SAVE USER","Main");
         if(test.getCarbonFootprint() != null){
             //userRef.child("carbonFootprint").setValue(test.getCarbonFootprint().toMap());
-            this.saveCarbonFootprint(user.getuID(), user.getCarbonFootprint());
+            this.saveCarbonFootprint(test.getuID(), test.getCarbonFootprint());
             Log.d("SAVE USER","Carbon");
         }
         if(test.getEcoTracker() != null){
-            this.saveEcoTracker(user.getuID(), user.getEcoTracker());
+            this.saveEcoTracker(test.getuID(), test.getEcoTracker());
             //userRef.child("ecoTracker").setValue(test.getEcoTracker().toMap());
             Log.d("SAVE USER","Eco");
         }
-
     }
 
     public void fetchUser(String userID, final UserFetchListener listener){
         DatabaseReference userRef = databaseReference.child("users").child(userID);
+        Log.d("CHECK HERE", "YESSSS");
+
 
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("CHECK HERE", "LOOK");
                 user = dataSnapshot.getValue(User.class);
+                Log.d("CHECK HERE", "LOOK2");
                 if (user != null) {
-                    System.out.println("User fetched successfully: " + user);
+                    Log.d("CHECK HERE", "YEAYAEA");
                     listener.onUserFetched(user);
-                    /*Log.d("Tester","Not Null");
-                    if(user.getEmail() == null){
-                        Log.d("Tester", "Null ID");
-                    }
-                    else{
-                        Log.d("Tester",user.getEmail());
-                    }*/
-
-
                 } else {
+                    Log.d("CHECK HERE", "NOOOOO");
+
                     listener.onFetchFailed("No user found with ID: " + userID);
                     //System.out.println("No user found with ID: " + userID);
                     //Log.d("T","Null");
@@ -65,6 +63,7 @@ public class FirebaseHelper {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.d("CHECK HERE", "nahhhhh");
                 System.out.println("User not found base " + databaseError.getCode());
             }
         });
@@ -110,47 +109,17 @@ public class FirebaseHelper {
         });
     }
 
-    public void checkOnboardingStatus(String userId, final OnboardingStatusListener listener) {
-        DatabaseReference userRef = databaseReference.child("users").child(userId).child("onboarding");
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override public void onDataChange(DataSnapshot dataSnapshot) {
-                Boolean isCompleted = dataSnapshot.getValue(Boolean.class);
-                listener.onStatusChecked(isCompleted != null && isCompleted);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.err.println("Error checking onboarding status: " + databaseError.getMessage());
-                listener.onStatusChecked(false);
-            }
-        });
-    }
-
-
-    public void checkCompletionStatus(String userId, final CompletionStatusListener listener){
-        DatabaseReference userRef = databaseReference.child("users").child(userId).child("onboarding");
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Boolean ecoTrackerCompleted = dataSnapshot.child("ecoTrackerCompleted").getValue(Boolean.class) != null &&
-                        dataSnapshot.child("ecoTrackerCompleted").getValue(Boolean.class);
-                Boolean carbonFootprintCompleted = dataSnapshot.child("carbonFootprintCompleted").getValue(Boolean.class) != null &&
-                        dataSnapshot.child("carbonFootprintCompleted").getValue(Boolean.class);
-
-                listener.onCompletionStatusChecked(ecoTrackerCompleted && carbonFootprintCompleted);
-
-
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.err.println("Error checking completion statuses: " + databaseError.getMessage());
-                listener.onCompletionStatusChecked(false);
-            }
-
-        });
-    }
-
-    public void updateOnboardingStatus(String userId) {
+    public void updateOnboardingStatus(String userId, boolean isDone) {
         DatabaseReference userRef = databaseReference.child("users").child(userId);
+        userRef.child("onboarding").setValue(isDone);
+    }
+
+    public interface UserFetchListener {
+        void onUserFetched(User user);
+        void onFetchFailed(String errorMessage);
+    }
+
+}
         userRef.child("ecoTrackerCompleted").setValue(true);
         userRef.child("carbonFootprintCompleted").setValue(true);
 
