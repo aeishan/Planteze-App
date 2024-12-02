@@ -26,8 +26,8 @@
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/pieChart"
-        android:layout_width="355dp"
-        android:layout_height="580dp"
+        android:layout_width="363dp"
+        android:layout_height="601dp"
         app:layout_constraintBottom_toTopOf="@+id/toComparisonPage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:id="@+id/toComparisonPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Compare To National Averages"
+        android:text="Compare To National/Global Averages"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

@@ -141,7 +141,7 @@ public class LoginAccountPage extends AppCompatActivity implements FirebaseHelpe
     @Override
     public void onUserFetched(User user) {
         Log.d("THIS ONE", "YES??");
-        Intent intent = new Intent (getApplicationContext(), CarbonFootprintBreakdown.class); // change to mainactivity for now
+        Intent intent = new Intent (getApplicationContext(), MainActivity.class); // change to eco tracker page
         Log.d("THIS ONE", "MADE IT");
         startActivity(intent);
     }

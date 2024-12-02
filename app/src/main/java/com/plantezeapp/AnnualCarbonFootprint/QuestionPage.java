@@ -299,6 +299,8 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(QuestionPage.this, "hi " + consumptionEmission, Toast.LENGTH_SHORT).show();
                 Toast.makeText(QuestionPage.this, "You're DONE!!!", Toast.LENGTH_SHORT).show();
 
+                checkForNegatives();
+
                 answers.put("transportationE", "" + transportationEmission);
                 answers.put("foodE", "" + foodEmission);
                 answers.put("housingE", "" + housingEmission);
@@ -394,6 +396,9 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
         }
         else if (type == "Electric") {
             factor = 0.05;
+        }
+        else{
+            factor = 0.18; // average of all other choices
         }
 
         carC02.put("Up to 5,000 km (3,000 miles)", 5000 * factor);
@@ -566,6 +571,15 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
         catch (Exception e){
             System.out.println("You got an error: " + e);
             return 0;
+        }
+    }
+
+    void checkForNegatives(){
+        if (housingEmission < 0){
+            housingEmission = 0;
+        }
+        if (consumptionEmission < 0){
+            consumptionEmission = 0;
         }
     }
 

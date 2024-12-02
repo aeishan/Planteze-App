@@ -1,5 +1,6 @@
 package com.plantezeapp.AnnualCarbonFootprint;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -16,6 +17,8 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +55,15 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+        Button moveToAvg = findViewById(R.id.toComparisonPage);
+
+        moveToAvg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(CarbonFootprintBreakdown.this, Comparison.class);
+                startActivity(intent);
+            }
         });
 
 
@@ -115,7 +127,7 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
         percentage = difference / countryVal;
         globalPercentage = globalDifference / 2000.0;
 
-        textView.setText("Your total annual carbon emission is: " + total + " kg/year. You are \nHere is your breakdown:");
+        textView.setText("Your total annual carbon emission is: " + total + " kg/year.\nHere is your breakdown:");
 
 
 
