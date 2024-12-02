@@ -55,8 +55,6 @@ class HabitFilter : AppCompatActivity() {
         }
 
         co2ReductionFilter.setOnClickListener {
-            /* val databaseReference = FirebaseDatabase.getInstance()
-                .getReference("users/$userId/ecoTracker/emissionByDateAndCat/dd-mm-yy") */
             val currentUser = FirebaseAuth.getInstance().currentUser //check this out, fetch.user?
             if (currentUser !=null) {
                 fetchAndApplyFirebaseDataEmissions(
@@ -125,7 +123,6 @@ class HabitFilter : AppCompatActivity() {
         val databaseReference = FirebaseDatabase.getInstance()
             .getReference("users/$userId/ecoTracker/emissionByDateAndCat")
 
-        // Listen for the latest data from the database
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 try {
@@ -206,11 +203,11 @@ class HabitFilter : AppCompatActivity() {
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 try {
-                    val q1 = snapshot.child("0").getValue(String::class.java) ?: ""
-                    val q10 = snapshot.child("12").getValue(String::class.java) ?: ""
-                    val q17 = snapshot.child("19").getValue(String::class.java) ?: ""
-                    val q18 = snapshot.child("20").getValue(String::class.java) ?: ""
-                    val q21 = snapshot.child("23").getValue(String::class.java) ?: ""
+                    val q1 = snapshot.child("Q0").getValue(String::class.java) ?: ""
+                    val q10 = snapshot.child("Q12").getValue(String::class.java) ?: ""
+                    val q17 = snapshot.child("Q19").getValue(String::class.java) ?: ""
+                    val q18 = snapshot.child("Q20").getValue(String::class.java) ?: ""
+                    val q21 = snapshot.child("Q23").getValue(String::class.java) ?: ""
 
                     if ((q1 == "Yes")) {
                         transportationFilter.isSelected = true
