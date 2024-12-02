@@ -316,7 +316,7 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                 help.fetchUser(userFire.getUid(), this);
                 Log.d("MainActivity", "we here4!!");
 
-                Intent intent=new Intent(QuestionPage.this, CarbonFootprintBreakdown.class);
+                Intent intent=new Intent(QuestionPage.this, CarbonFootprintBreakdown2.class);
                 startActivity(intent);
             }
 

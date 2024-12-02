@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PlantezeApp"
         tools:targetApi="31">
         <activity
+            android:name=".AnnualCarbonFootprint.CarbonFootprintBreakdown2"
+            android:exported="false" />
+        <activity
             android:name=".AnnualCarbonFootprint.Comparison"
             android:exported="false" />
         <activity

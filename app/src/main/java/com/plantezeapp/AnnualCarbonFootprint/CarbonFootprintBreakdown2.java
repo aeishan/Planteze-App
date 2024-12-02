@@ -36,7 +36,7 @@ import com.plantezeapp.Database.User;
 import com.plantezeapp.MainActivity;
 import com.plantezeapp.R;
 
-public class CarbonFootprintBreakdown extends AppCompatActivity implements FirebaseHelper.UserFetchListener{
+public class CarbonFootprintBreakdown2 extends AppCompatActivity {
     float total = 0;
     double transE = 0;
     double foodE= 0;
@@ -62,33 +62,10 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
         moveToAvg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(CarbonFootprintBreakdown.this, Comparison.class);
+                Intent intent=new Intent(CarbonFootprintBreakdown2.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-
-
-        FirebaseHelper help = new FirebaseHelper();
-        FirebaseUser userFire = FirebaseAuth.getInstance().getCurrentUser();
-        help.fetchUser(userFire.getUid(), this);
-    }
-
-
-
-    @Override
-    public void onUserFetched(User user) {
-        Log.d("MainActivity", "User fetched: " + user.getEmail());
-
-        CarbonFootprint cfoot = user.getCarbonFootprint();
-
-        Log.d("TOTAL", "CHECK " + cfoot.getAnswer("transportationE"));
-        transE = Double.parseDouble(cfoot.getAnswer("transportationE"));
-        Log.d("TOTAL", "CHECK " + transE);
-        foodE = Double.parseDouble(cfoot.getAnswer("foodE"));
-        housingE = Double.parseDouble(cfoot.getAnswer("housingE"));
-        consumptionE = Double.parseDouble(cfoot.getAnswer("consumptionE"));
-        country = cfoot.getAnswer("country");
-        countryVal = Double.parseDouble(cfoot.getAnswer("countryValue"));
 
         PieChart pieChart = findViewById(R.id.pieChart);
 
@@ -103,8 +80,8 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
         pieChart.setExtraBottomOffset(20f);
 
         TextView textView = findViewById(R.id.pieChartTitle);
-        double[] values = {transE, foodE, housingE, consumptionE};
-        Log.d("TOTAL", "" + transE);
+        double[] values = {QuestionPage.transportationEmission, QuestionPage.foodEmission,
+                QuestionPage.housingEmission, QuestionPage.consumptionEmission};
         String[] labels =  {"Transportation", "Food", "Housing", "Consumption"};
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         double difference = 0;
@@ -129,6 +106,7 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
         globalPercentage = globalDifference / 2000.0;
 
         textView.setText("Your total annual carbon emission is: " + total + " kg/year.\nHere is your breakdown:");
+        Log.d("WE GOT IT", "YEAAAA");
 
 
 
@@ -210,13 +188,5 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
         });
 
         pieChart.invalidate();
-
-
-    }
-
-    @Override
-    public void onFetchFailed(String errorMessage) {
-        Log.d("MainActivity", "Error: User not Fetched" );
-
     }
 }
