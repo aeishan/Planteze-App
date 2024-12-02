@@ -1,5 +1,7 @@
 package com.plantezeapp.Database;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
@@ -18,24 +20,48 @@ public class FirebaseHelper {
 
     private User user;
 
-    public void saveUser() {
-        DatabaseReference userRef = databaseReference.child("users").child(user.getuID());
-        userRef.child("email").setValue(user.getEmail());
-        userRef.child("carbonFootprint").setValue(user.getCarbonFootprint().toMap());
-        userRef.child("ecoTracker").setValue(user.getEcoTracker().toMap());
+    public void saveUser(User test) {
+        Log.d("SAVE USER","Begin");
+        DatabaseReference userRef = databaseReference.child("users").child(test.getuID());
+        userRef.child("email").setValue(test.getEmail());
+        Log.d("SAVE USER","Main");
+        if(test.getCarbonFootprint() != null){
+            //userRef.child("carbonFootprint").setValue(test.getCarbonFootprint().toMap());
+            this.saveCarbonFootprint(test.getuID(), test.getCarbonFootprint());
+            Log.d("SAVE USER","Carbon");
+        }
+        if(test.getEcoTracker() != null){
+            this.saveEcoTracker(test.getuID(), test.getEcoTracker());
+            //userRef.child("ecoTracker").setValue(test.getEcoTracker().toMap());
+            Log.d("SAVE USER","Eco");
+        }
     }
 
-    public void fetchUser(String userID){
+    public void fetchUser(String userID, final UserFetchListener listener){
         DatabaseReference userRef = databaseReference.child("users").child(userID);
+        Log.d("CHECK HERE", "YESSSS");
 
-        userRef.addValueEventListener(new ValueEventListener() {
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnaptshot) {
-                User user = dataSnaptshot.getValue(User.class);
-                System.out.println("User fetched successfully" + user);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("CHECK HERE", "LOOK");
+                user = dataSnapshot.getValue(User.class);
+                Log.d("CHECK HERE", "LOOK2");
+                if (user != null) {
+                    Log.d("CHECK HERE", "YEAYAEA");
+                    listener.onUserFetched(user);
+                } else {
+                    Log.d("CHECK HERE", "NOOOOO");
+
+                    listener.onFetchFailed("No user found with ID: " + userID);
+                    //System.out.println("No user found with ID: " + userID);
+                    //Log.d("T","Null");
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.d("CHECK HERE", "nahhhhh");
                 System.out.println("User not found base " + databaseError.getCode());
             }
         });
@@ -84,6 +110,11 @@ public class FirebaseHelper {
     public void updateOnboardingStatus(String userId, boolean isDone) {
         DatabaseReference userRef = databaseReference.child("users").child(userId);
         userRef.child("onboarding").setValue(isDone);
+    }
+
+    public interface UserFetchListener {
+        void onUserFetched(User user);
+        void onFetchFailed(String errorMessage);
     }
 
 }

@@ -22,27 +22,15 @@
             android:exported="false" />
         <activity
             android:name=".UserLogin.RegisterAccountPage"
-        
-        <activity
-            android:name=".UserLogin.ConfirmationSignupPage"
-            android:exported="false" />
-        <activity
-            android:name=".UserLogin.LoginAccountPage"
             android:exported="false" />
         <activity
             android:name=".AnnualCarbonFootprint.CarbonFootprintBreakdown"
             android:exported="false" />
         <activity
-            android:name=".UserLogin.RegisterAccountPage"
-            android:exported="false" />
-        <activity
             android:name=".AnnualCarbonFootprint.QuestionPage"
             android:exported="false" />
         <activity
-            android:name=".UserLogin.WelcomePage"
-            android:exported="false" />
-        <activity
-            android:name=".UserLogin.RegisterAccountPage"
+            android:name=".AnnualCarbonFootprint.IntroPage"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

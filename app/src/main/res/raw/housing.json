@@ -43,7 +43,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 2800,
           "Electricity" : 300,
@@ -106,7 +106,7 @@
           "Natural Gas": 3200,
           "Electricity" : 1800,
           "Oil": 14000,
-          "Propane" : 7100,
+          "Propane" : 5800,
           "Wood": 4510,
           "Solar": 233
         },
@@ -114,7 +114,7 @@
           "Natural Gas": 3400,
           "Electricity" : 2700,
           "Oil": 17500,
-          "Propane" : 4280,
+          "Propane" : 5852,
           "Wood": 4680,
           "Solar": 233
         },
@@ -122,7 +122,7 @@
           "Natural Gas": 3600,
           "Electricity" : 3600,
           "Oil": 21000,
-          "Propane" : 4600,
+          "Propane" : 6100,
           "Wood": 5000,
           "Solar": 233
         }
@@ -171,7 +171,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 3000,
           "Electricity" : 380,
@@ -234,7 +234,7 @@
           "Natural Gas": 3400,
           "Electricity" : 2100,
           "Oil": 15500,
-          "Propane" : 0,
+          "Propane" : 6410,
           "Wood": 5010,
           "Solar": 233
         },
@@ -242,7 +242,7 @@
           "Natural Gas": 3600,
           "Electricity" : 3100,
           "Oil": 18100,
-          "Propane" : 0,
+          "Propane" : 6560,
           "Wood": 5180,
           "Solar": 233
         },
@@ -250,7 +250,7 @@
           "Natural Gas": 3800,
           "Electricity" : 3800,
           "Oil": 22000,
-          "Propane" : 0,
+          "Propane" : 6840,
           "Wood": 5500,
           "Solar": 233
         }
@@ -299,7 +299,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 3380,
           "Electricity": 500,
@@ -362,7 +362,7 @@
           "Natural Gas": 3700,
           "Electricity": 2300,
           "Oil": 16250,
-          "Propane": 0,
+          "Propane": 7300,
           "Wood": 5710,
           "Solar": 233
         },
@@ -370,7 +370,7 @@
           "Natural Gas": 4100,
           "Electricity" : 3400,
           "Oil": 20000,
-          "Propane" : 0,
+          "Propane" : 7600,
           "Wood": 5980,
           "Solar": 233
         },
@@ -378,7 +378,7 @@
           "Natural Gas": 4100,
           "Electricity" : 4000,
           "Oil": 23500,
-          "Propane" : 0,
+          "Propane" : 7890,
           "Wood": 6250,
           "Solar": 233
         }
@@ -427,7 +427,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 3860,
           "Electricity": 600,
@@ -490,7 +490,7 @@
           "Natural Gas": 4000,
           "Electricity": 2700,
           "Oil": 17500,
-          "Propane": 0,
+          "Propane": 8230,
           "Wood": 6510,
           "Solar": 233
         },
@@ -498,7 +498,7 @@
           "Natural Gas": 4400,
           "Electricity" : 3600,
           "Oil": 21000,
-          "Propane" : 0,
+          "Propane" : 8300,
           "Wood": 6680,
           "Solar": 233
         },
@@ -506,7 +506,7 @@
           "Natural Gas": 4400,
           "Electricity" : 4200,
           "Oil": 25000,
-          "Propane" : 0,
+          "Propane" : 8710,
           "Wood": 7000,
           "Solar": 233
         }
@@ -557,7 +557,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 2443,
           "Electricity": 300,
@@ -685,7 +685,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 2727,
           "Electricity" : 410,
@@ -813,7 +813,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 3151,
           "Electricity": 550,
@@ -941,7 +941,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 3578,
           "Electricity": 605,
@@ -1071,7 +1071,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 2443,
           "Electricity": 300,
@@ -1199,7 +1199,7 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
           "Natural Gas": 2750,
           "Electricity": 380,
@@ -1327,87 +1327,87 @@
           "Solar": 233
         }
       },
-      "1000-2000 sq. ft": {
+      "1000-2000 sq. ft.": {
         "Under $50": {
-          "Natural Gas": 3151,
-          "Electricity": 550,
-          "Oil": 3599,
-          "Propane": 4700,
-          "Wood": 2100,
+          "Natural Gas": 3111,
+          "Electricity": 500,
+          "Oil": 2730,
+          "Propane": 4670,
+          "Wood": 1900,
           "Solar": 233
         },
         "$50-$100": {
-          "Natural Gas": 6800,
-          "Electricity": 1050,
-          "Oil": 5100,
-          "Propane": 7300,
-          "Wood": 3500,
+          "Natural Gas": 6500,
+          "Electricity": 950,
+          "Oil": 4800,
+          "Propane": 6140,
+          "Wood": 3300,
           "Solar": 233
         },
         "$100-$150": {
-          "Natural Gas": 7800,
-          "Electricity": 1700,
-          "Oil": 7300,
-          "Propane": 9100,
-          "Wood": 4850,
+          "Natural Gas": 6800,
+          "Electricity": 1520,
+          "Oil": 6200,
+          "Propane": 6420,
+          "Wood": 4600,
           "Solar": 233
         },
         "$150-$200": {
-          "Natural Gas": 8800,
-          "Electricity": 2250,
-          "Oil": 9200,
-          "Propane": 11000,
-          "Wood": 6800,
+          "Natural Gas": 8500,
+          "Electricity": 2150,
+          "Oil": 5720,
+          "Propane": 5180,
+          "Wood": 4220,
           "Solar": 233
         },
         "Over $200": {
-          "Natural Gas": 9800,
-          "Electricity": 2800,
-          "Oil": 11200,
-          "Propane": 14100,
-          "Wood": 8600,
+          "Natural Gas": 11200,
+          "Electricity": 3000,
+          "Oil": 5800,
+          "Propane": 6800,
+          "Wood": 5000,
           "Solar": 233
         }
       },
       "Over 2000 sq. ft.": {
         "Under $50": {
-          "Natural Gas": 3261,
+          "Natural Gas": 3300,
           "Electricity": 890,
-          "Oil": 4307,
-          "Propane": 5670,
-          "Wood": 5270,
+          "Oil": 3468,
+          "Propane": 4840,
+          "Wood": 5000,
           "Solar": 233
         },
         "$50-$100": {
-          "Natural Gas": 10800,
-          "Electricity": 1650,
-          "Oil": 7200,
-          "Propane": 5840,
-          "Wood": 5340,
+          "Natural Gas": 3900,
+          "Electricity": 1600,
+          "Oil": 5320,
+          "Propane": 6440,
+          "Wood": 4360,
           "Solar": 233
         },
         "$100-$150": {
-          "Natural Gas": 14000,
-          "Electricity": 2300,
-          "Oil": 10200,
-          "Propane": 6010,
-          "Wood": 5610,
+          "Natural Gas": 7000,
+          "Electricity": 2200,
+          "Oil": 6250,
+          "Propane": 5010,
+          "Wood": 4780,
           "Solar": 233
         },
         "$150-$200": {
-          "Natural Gas": 16000,
-          "Electricity": 2820,
-          "Oil": 13500,
-          "Propane": 6180,
-          "Wood": 5780,
+          "Natural Gas": 9000,
+          "Electricity": 2650,
+          "Oil": 5800,
+          "Propane": 5380,
+          "Wood": 5000,
           "Solar": 233
         },
         "Over $200": {
-          "Natural Gas": 18200,
-          "Electricity": 4000,
-          "Oil": 15500,
-          "Propane": 6500,
-          "Wood": 6150,
+          "Natural Gas": 10300,
+          "Electricity": 3800,
+          "Oil": 6100,
+          "Propane": 7500,
+          "Wood": 5100,
           "Solar": 233
         }
       }
@@ -1415,127 +1415,641 @@
     "5 or more": {
       "Under 1000 sq. ft.": {
         "Under $50": {
-          "Natural Gas": 3199,
-          "Electricity": 580,
-          "Oil": 2750,
-          "Propane": 2600,
-          "Wood": 3000,
+          "Natural Gas": 2800,
+          "Electricity": 550,
+          "Oil": 2720,
+          "Propane": 2500,
+          "Wood": 2600,
           "Solar": 233
         },
         "$50-$100": {
           "Natural Gas": 3200,
           "Electricity": 600,
-          "Oil": 3600,
-          "Propane": 3400,
+          "Oil": 3500,
+          "Propane": 3800,
+          "Wood": 3400,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3800,
+          "Electricity": 1420,
+          "Oil": 4050,
+          "Propane": 5000,
+          "Wood": 3800,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 8000,
+          "Electricity": 2000,
+          "Oil": 5100,
+          "Propane": 5800,
+          "Wood": 4000,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 12000,
+          "Electricity": 3000,
+          "Oil": 5600,
+          "Propane": 7800,
+          "Wood": 4300,
+          "Solar": 233
+        }
+      },
+      "1000-2000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 3580,
+          "Electricity": 590,
+          "Oil": 2800,
+          "Propane": 5570,
+          "Wood": 2200,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 7300,
+          "Electricity": 1100,
+          "Oil": 5500,
+          "Propane": 6340,
           "Wood": 3800,
           "Solar": 233
         },
         "$100-$150": {
-          "Natural Gas": 3400,
-          "Electricity": 1820,
-          "Oil": 3800,
-          "Propane": 3600,
-          "Wood": 4000,
+          "Natural Gas": 8340,
+          "Electricity": 1700,
+          "Oil": 6100,
+          "Propane": 6500,
+          "Wood": 5100,
           "Solar": 233
         },
         "$150-$200": {
-          "Natural Gas": 3600,
-          "Electricity": 2200,
-          "Oil": 4000,
-          "Propane": 3800,
-          "Wood": 4200,
-          "Solar": 233
-        },
-        "Over $200": {
-          "Natural Gas": 3800,
-          "Electricity": 3000,
-          "Oil": 4200,
-          "Propane": 4000,
+          "Natural Gas": 9000,
+          "Electricity": 2400,
+          "Oil": 5900,
+          "Propane": 6080,
           "Wood": 4400,
           "Solar": 233
-        }
-      },
-      "1000-2000 sq. ft": {
-        "Under $50": {
-          "Natural Gas": 3578,
-          "Electricity": 605,
-          "Oil": 3700,
-          "Propane": 4900,
-          "Wood": 2500,
-          "Solar": 233
-        },
-        "$50-$100": {
-          "Natural Gas": 7500,
-          "Electricity": 1200,
-          "Oil": 6000,
-          "Propane": 8000,
-          "Wood": 4000,
-          "Solar": 233
-        },
-        "$100-$150": {
-          "Natural Gas": 8500,
-          "Electricity": 1800,
-          "Oil": 8500,
-          "Propane": 10000,
-          "Wood": 5500,
-          "Solar": 233
-        },
-        "$150-$200": {
-          "Natural Gas": 10000,
-          "Electricity": 2400,
-          "Oil": 10500,
-          "Propane": 12000,
-          "Wood": 7100,
-          "Solar": 233
         },
         "Over $200": {
-          "Natural Gas": 11000,
-          "Electricity": 3200,
-          "Oil": 12000,
-          "Propane": 15000,
-          "Wood": 9100,
+          "Natural Gas": 14000,
+          "Electricity": 3500,
+          "Oil": 6200,
+          "Propane": 7400,
+          "Wood": 5430,
           "Solar": 233
         }
       },
       "Over 2000 sq. ft.": {
         "Under $50": {
-          "Natural Gas": 3578,
+          "Natural Gas": 3600,
           "Electricity": 1000,
-          "Oil": 4400,
-          "Propane": 6370,
-          "Wood": 5970,
+          "Oil": 3760,
+          "Propane": 5740,
+          "Wood": 5600,
           "Solar": 233
         },
         "$50-$100": {
-          "Natural Gas": 12500,
-          "Electricity": 1800,
-          "Oil": 8500,
-          "Propane": 6540,
-          "Wood": 6140,
+          "Natural Gas": 5100,
+          "Electricity": 1750,
+          "Oil": 5800,
+          "Propane": 6900,
+          "Wood": 5000,
           "Solar": 233
         },
         "$100-$150": {
-          "Natural Gas": 15000,
-          "Electricity": 2400,
-          "Oil": 11000,
-          "Propane": 6710,
-          "Wood": 6310,
+          "Natural Gas": 8000,
+          "Electricity": 2300,
+          "Oil": 6500,
+          "Propane": 5910,
+          "Wood": 5360,
           "Solar": 233
         },
         "$150-$200": {
-          "Natural Gas": 17500,
-          "Electricity" : 3000,
-          "Oil": 14000,
-          "Propane" : 6880,
-          "Wood": 6480,
+          "Natural Gas": 9500,
+          "Electricity": 2800,
+          "Oil": 6000,
+          "Propane": 6200,
+          "Wood": 5400,
           "Solar": 233
         },
         "Over $200": {
-          "Natural Gas": 19000,
-          "Electricity" : 4500,
-          "Oil": 16000,
-          "Propane" : 7200,
-          "Wood": 6800,
+          "Natural Gas": 11000,
+          "Electricity": 4300,
+          "Oil": 6350,
+          "Propane": 7850,
+          "Wood": 5500,
+          "Solar": 233
+        }
+      }
+    }
+  },
+  "Condo/Apartment": {
+    "1": {
+      "Under 1000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 1680,
+          "Electricity": 200,
+          "Oil": 0,
+          "Propane": 1320,
+          "Wood": 1600,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 2240,
+          "Electricity": 500,
+          "Oil": 0,
+          "Propane": 2100,
+          "Wood": 1800,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 2800,
+          "Electricity": 900,
+          "Oil": 0,
+          "Propane": 3000,
+          "Wood": 2800,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 3700,
+          "Electricity": 1400,
+          "Oil": 0,
+          "Propane": 3300,
+          "Wood": 3000,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 5000,
+          "Electricity": 1900,
+          "Oil": 0,
+          "Propane": 5700,
+          "Wood": 3500,
+          "Solar": 233
+        }
+      },
+      "1000-2000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 2060,
+          "Electricity": 300,
+          "Oil": 0,
+          "Propane": 1500,
+          "Wood": 1800,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 2500,
+          "Electricity": 550,
+          "Oil": 0,
+          "Propane": 3000,
+          "Wood": 2200,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3100,
+          "Electricity": 1250,
+          "Oil": 0,
+          "Propane": 4100,
+          "Wood": 3200,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 4000,
+          "Electricity": 1900,
+          "Oil": 0,
+          "Propane": 4550,
+          "Wood": 3100,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 5350,
+          "Electricity": 2300,
+          "Oil": 0,
+          "Propane": 6000,
+          "Wood": 3900,
+          "Solar": 233
+        }
+      },
+      "Over 2000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 2440,
+          "Electricity": 350,
+          "Oil": 0,
+          "Propane": 1800,
+          "Wood": 2300,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 2700,
+          "Electricity": 610,
+          "Oil": 0,
+          "Propane": 3650,
+          "Wood": 2600,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3670,
+          "Electricity": 1500,
+          "Oil": 0,
+          "Propane": 4500,
+          "Wood": 3500,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 4250,
+          "Electricity": 2150,
+          "Oil": 0,
+          "Propane": 5000,
+          "Wood": 3530,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 6000,
+          "Electricity": 2600,
+          "Oil": 0,
+          "Propane": 6500,
+          "Wood": 4100,
+          "Solar": 233
+        }
+      }
+    },
+    "2": {
+      "Under 1000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 1870,
+          "Electricity": 250,
+          "Oil": 0,
+          "Propane": 1550,
+          "Wood": 1850,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 2430,
+          "Electricity": 550,
+          "Oil": 0,
+          "Propane": 2400,
+          "Wood": 2000,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3000,
+          "Electricity": 1100,
+          "Oil": 0,
+          "Propane": 3300,
+          "Wood": 3000,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 4100,
+          "Electricity": 1600,
+          "Oil": 0,
+          "Propane": 3700,
+          "Wood": 3100,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 7200,
+          "Electricity": 2100,
+          "Oil": 0,
+          "Propane": 6000,
+          "Wood": 3600,
+          "Solar": 233
+        }
+      },
+      "1000-2000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 2260,
+          "Electricity": 400,
+          "Oil": 0,
+          "Propane": 1700,
+          "Wood": 2200,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 2880,
+          "Electricity": 670,
+          "Oil": 0,
+          "Propane": 3400,
+          "Wood": 2500,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3300,
+          "Electricity": 1450,
+          "Oil": 0,
+          "Propane": 4600,
+          "Wood": 3500,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 4700,
+          "Electricity": 2300,
+          "Oil": 0,
+          "Propane": 4950,
+          "Wood": 3300,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 7550,
+          "Electricity": 2500,
+          "Oil": 0,
+          "Propane": 6300,
+          "Wood": 4200,
+          "Solar": 233
+        }
+      },
+      "Over 2000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 2727,
+          "Electricity": 570,
+          "Oil": 0,
+          "Propane": 2100,
+          "Wood": 2600,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 3100,
+          "Electricity": 690,
+          "Oil": 0,
+          "Propane": 4050,
+          "Wood": 2900,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3870,
+          "Electricity": 1700,
+          "Oil": 0,
+          "Propane": 5000,
+          "Wood": 3700,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 5050,
+          "Electricity": 2550,
+          "Oil": 0,
+          "Propane": 5300,
+          "Wood": 3730,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 7800,
+          "Electricity": 3100,
+          "Oil": 0,
+          "Propane": 6800,
+          "Wood": 4400,
+          "Solar": 233
+        }
+      }
+    },
+    "3-4": {
+      "Under 1000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 2170,
+          "Electricity": 380,
+          "Oil": 0,
+          "Propane": 1800,
+          "Wood": 2000,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 2719,
+          "Electricity": 580,
+          "Oil": 0,
+          "Propane": 2800,
+          "Wood": 2300,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3200,
+          "Electricity": 1200,
+          "Oil": 0,
+          "Propane": 3700,
+          "Wood": 3300,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 4600,
+          "Electricity": 1700,
+          "Oil": 0,
+          "Propane": 4400,
+          "Wood": 3500,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 8000,
+          "Electricity": 2200,
+          "Oil": 0,
+          "Propane": 6600,
+          "Wood": 3900,
+          "Solar": 233
+        }
+      },
+      "1000-2000 sq. ft..": {
+        "Under $50": {
+          "Natural Gas": 2540,
+          "Electricity": 500,
+          "Oil": 0,
+          "Propane": 2100,
+          "Wood": 2500,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 3110,
+          "Electricity": 780,
+          "Oil": 0,
+          "Propane": 3800,
+          "Wood": 2900,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3500,
+          "Electricity": 1750,
+          "Oil": 0,
+          "Propane": 5000,
+          "Wood": 3600,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 5200,
+          "Electricity": 2700,
+          "Oil": 0,
+          "Propane": 5350,
+          "Wood": 3700,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 8200,
+          "Electricity": 2700,
+          "Oil": 0,
+          "Propane": 7000,
+          "Wood": 4500,
+          "Solar": 233
+        }
+      },
+      "Over 2000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 3010,
+          "Electricity": 900,
+          "Oil": 0,
+          "Propane": 2450,
+          "Wood": 2900,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 3300,
+          "Electricity": 820,
+          "Oil": 0,
+          "Propane": 4650,
+          "Wood": 3300,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 4100,
+          "Electricity": 2000,
+          "Oil": 0,
+          "Propane": 5400,
+          "Wood": 4200,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 5400,
+          "Electricity": 2850,
+          "Oil": 0,
+          "Propane": 5600,
+          "Wood": 4200,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 8500,
+          "Electricity": 3600,
+          "Oil": 0,
+          "Propane": 7400,
+          "Wood": 4900,
+          "Solar": 233
+        }
+      }
+    },
+    "5 or more": {
+      "Under 1000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 2440,
+          "Electricity": 450,
+          "Oil": 0,
+          "Propane": 2000,
+          "Wood": 2100,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 2997,
+          "Electricity": 600,
+          "Oil": 0,
+          "Propane": 3200,
+          "Wood": 2400,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3500,
+          "Electricity": 1300,
+          "Oil": 0,
+          "Propane": 4300,
+          "Wood": 3500,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 5000,
+          "Electricity": 1900,
+          "Oil": 0,
+          "Propane": 5200,
+          "Wood": 3900,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 10000,
+          "Electricity": 2600,
+          "Oil": 0,
+          "Propane": 7000,
+          "Wood": 4200,
+          "Solar": 233
+        }
+      },
+      "1000-2000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 3010,
+          "Electricity": 620,
+          "Oil": 0,
+          "Propane": 2300,
+          "Wood": 2700,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 3320,
+          "Electricity": 900,
+          "Oil": 0,
+          "Propane": 4200,
+          "Wood": 3300,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 3900,
+          "Electricity": 2100,
+          "Oil": 0,
+          "Propane": 5400,
+          "Wood": 4000,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 5900,
+          "Electricity": 3000,
+          "Oil": 0,
+          "Propane": 5650,
+          "Wood": 4100,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 10500,
+          "Electricity": 3100,
+          "Oil": 0,
+          "Propane": 7400,
+          "Wood": 4700,
+          "Solar": 233
+        }
+      },
+      "Over 2000 sq. ft.": {
+        "Under $50": {
+          "Natural Gas": 3577,
+          "Electricity": 980,
+          "Oil": 0,
+          "Propane": 2600,
+          "Wood": 3300,
+          "Solar": 233
+        },
+        "$50-$100": {
+          "Natural Gas": 3600,
+          "Electricity": 980,
+          "Oil": 0,
+          "Propane": 5150,
+          "Wood": 3600,
+          "Solar": 233
+        },
+        "$100-$150": {
+          "Natural Gas": 4300,
+          "Electricity": 2350,
+          "Oil": 0,
+          "Propane": 5700,
+          "Wood": 4600,
+          "Solar": 233
+        },
+        "$150-$200": {
+          "Natural Gas": 6200,
+          "Electricity": 3150,
+          "Oil": 0,
+          "Propane": 6000,
+          "Wood": 4630,
+          "Solar": 233
+        },
+        "Over $200": {
+          "Natural Gas": 11100,
+          "Electricity": 4000,
+          "Oil": 0,
+          "Propane": 7800,
+          "Wood": 5100,
           "Solar": 233
         }
       }

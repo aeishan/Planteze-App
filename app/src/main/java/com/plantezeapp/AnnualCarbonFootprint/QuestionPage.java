@@ -17,6 +17,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.plantezeapp.Database.CarbonFootprint;
+import com.plantezeapp.Database.FirebaseHelper;
+import com.plantezeapp.Database.User;
 import com.plantezeapp.R;
 import com.plantezeapp.UserLogin.RegisterAccountPage;
 import com.plantezeapp.UserLogin.WelcomePage;
@@ -31,18 +36,18 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class QuestionPage extends AppCompatActivity implements View.OnClickListener{
+public class QuestionPage extends AppCompatActivity implements View.OnClickListener, FirebaseHelper.UserFetchListener{
 
-    TextView question_here;
+    TextView question_here; // make sure to isolate the "other" option when they choose what house they have
     Button Next;
     ConstraintLayout constraintLayout;
     private List<View> dynamicButtons = new ArrayList<>();
     String selectedAnswer = "";
     private String clothesFrequency;
-    private double transportationEmission;  // how many decimal places should total emissions be rounded to
-    private double foodEmission;
-    private double housingEmission;
-    private double consumptionEmission;
+    static double transportationEmission;
+    static double foodEmission;
+    static double housingEmission;
+    static double consumptionEmission;
     private HashMap<String, Integer> transportationCO2;
     private HashMap<String, Double> carC02;
 
@@ -65,6 +70,10 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
     private String area;
     private String bill;
     private String heat_home;
+    private HashMap<String, String> answers;
+    private User user;
+    private FirebaseUser userFire;
+    private FirebaseHelper help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +112,7 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
         clothing = new HashMap<>();
         eDevices = new HashMap<>();
         consumptionReductionFactors = new HashMap<>();
+        answers = new HashMap<>();
 
         sFlights.put("None", 0);
         sFlights.put("1-2 flights", 225);
@@ -147,9 +157,8 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
 
         Button clickedButton = (Button) v;
         if (clickedButton.getId() == Next.getId()){
+            answers.put("Q" + currentQuestionIndex, selectedAnswer);
             if (currentQuestionIndex < QuestionAnswer.question.length - 1) {
-                Toast.makeText(QuestionPage.this, "hi " + housingValue, Toast.LENGTH_SHORT).show();
-
 
 
                 if (selectedAnswer == "") {
@@ -206,7 +215,12 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(QuestionPage.this, "hi " + foodEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 13){
-                        home = selectedAnswer;
+                        if (selectedAnswer.equals("Other")){
+                            home = "Townhouse";
+                        }
+                        else{
+                            home = selectedAnswer;
+                        }
                     }
                     else if (currentQuestionIndex == 14){
                         occupants = selectedAnswer;
@@ -221,9 +235,29 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                         bill = selectedAnswer;
                     }
                     else if (currentQuestionIndex == 18){
-                        housingEmission = housingEmission + createJSON(home, occupants, area, bill, heat_home);
-                        housingEmission = housingEmission + createJSON(home, occupants, area, bill, selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + housingEmission, Toast.LENGTH_SHORT).show();
+
+                        if (heat_home.equals("Other")){
+                            double val = createJSON(home, occupants, area, bill, "Natural Gas") + createJSON(home, occupants, area, bill, "Electricity") + createJSON(home, occupants, area, bill, "Oil") + createJSON(home, occupants, area, bill, "Propane") + createJSON(home, occupants, area, bill, "Wood");
+                            val = val / 5;
+
+                            housingEmission = housingEmission + val;
+                        }
+                        else{
+                            housingEmission = housingEmission + createJSON(home, occupants, area, bill, heat_home);
+                        }
+                        Toast.makeText(QuestionPage.this, "first: " + housingEmission, Toast.LENGTH_SHORT).show();
+
+                        if (selectedAnswer.equals("Other")){
+                            double val2 = createJSON(home, occupants, area, bill, "Natural Gas") + createJSON(home, occupants, area, bill, "Electricity") + createJSON(home, occupants, area, bill, "Oil") + createJSON(home, occupants, area, bill, "Propane") + createJSON(home, occupants, area, bill, "Solar");
+                            val2 = val2 / 5;
+
+                            housingEmission = housingEmission + val2;
+                        }
+                        else{
+                            housingEmission = housingEmission + createJSON(home, occupants, area, bill, selectedAnswer);
+                        }
+
+                        Toast.makeText(QuestionPage.this, "second " + housingEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 19){
                         if (selectedAnswer.equals("Yes, primarily (more than 50% of energy use)")){
@@ -264,6 +298,21 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                 reduceConsumptionEmission2(clothesFrequency, selectedAnswer);
                 Toast.makeText(QuestionPage.this, "hi " + consumptionEmission, Toast.LENGTH_SHORT).show();
                 Toast.makeText(QuestionPage.this, "You're DONE!!!", Toast.LENGTH_SHORT).show();
+
+                answers.put("transportationE", "" + transportationEmission);
+                answers.put("foodE", "" + foodEmission);
+                answers.put("housingE", "" + housingEmission);
+                answers.put("consumptionE", "" + consumptionEmission);
+                answers.put("country", IntroPage.item);
+                answers.put("countryValue", "" + IntroPage.countryValues.get(IntroPage.item));
+
+                Log.d("MainActivity", "we here!!");
+                userFire = FirebaseAuth.getInstance().getCurrentUser();
+                Log.d("MainActivity", "we here2!!");
+                help = new FirebaseHelper();
+                Log.d("MainActivity", "we here3!!");
+                help.fetchUser(userFire.getUid(), this);
+                Log.d("MainActivity", "we here4!!");
 
                 Intent intent=new Intent(QuestionPage.this, CarbonFootprintBreakdown.class);
                 startActivity(intent);
@@ -525,5 +574,30 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
             constraintLayout.removeView(button);
         }
         dynamicButtons.clear();
+    }
+
+    @Override
+    public void onUserFetched(User user) {
+        Log.d("MainActivity", "User fetched: " + user.getEmail());
+        this.user = user;
+
+        CarbonFootprint cfoot = user.getCarbonFootprint();
+        Log.d("MainActivity", "is NULL?? : " + cfoot);
+
+
+        cfoot.setAnswers(answers);
+
+        user.setuID(userFire.getUid());
+        help.saveUser(user);
+    }
+
+    @Override
+    public void onFetchFailed(String errorMessage) {
+        Log.d("MainActivity", "Error: User not Fetched" );
+
+        user = new User(userFire.getUid(), userFire.getEmail());
+        CarbonFootprint cfoot = user.getCarbonFootprint();
+        cfoot.setAnswers(answers);
+        help.saveUser(user);
     }
 }
