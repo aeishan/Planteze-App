@@ -11,10 +11,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.plantezeapp.Calendar.CalendarTrack;
 import com.plantezeapp.R;
+import com.plantezeapp.Track.Track;
 
 public class WelcomePage extends AppCompatActivity {
-    private Button moveToRegister;
+    private Button moveToRegister, moveToLogin, test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,8 @@ public class WelcomePage extends AppCompatActivity {
             return insets;
         });
         moveToRegister=findViewById(R.id.MoveToRegister);
+        moveToLogin=findViewById(R.id.MoveToLogin);
+
         moveToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,5 +38,15 @@ public class WelcomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        moveToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WelcomePage.this, LoginAccountPage.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
