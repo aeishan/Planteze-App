@@ -15,8 +15,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.plantezeapp.AnnualCarbonFootprint.IntroPage;
 import com.plantezeapp.Calendar.CalendarTrack;
 import com.plantezeapp.Calendar.ViewDetails;
+import com.plantezeapp.Database.CarbonFootprint;
 import com.plantezeapp.Database.EcoTracker;
 import com.plantezeapp.Database.FirebaseHelper;
 import com.plantezeapp.Database.User;
@@ -86,6 +88,24 @@ public class Tracker extends AppCompatActivity implements FirebaseHelper.UserFet
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Tracker.this, HabitMenu.class);
+                startActivity(intent);
+            }
+        });
+
+        Button survey = findViewById(R.id.moveToSurvey);
+        survey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Tracker.this, IntroPage.class);
+                startActivity(intent);
+            }
+        });
+
+        Button breakdown = findViewById(R.id.moveToBreakdown);
+        breakdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Tracker.this, com.plantezeapp.AnnualCarbonFootprint.CarbonFootprintBreakdown.class);
                 startActivity(intent);
             }
         });

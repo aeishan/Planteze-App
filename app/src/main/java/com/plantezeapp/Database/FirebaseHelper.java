@@ -23,36 +23,19 @@ public class FirebaseHelper {
     private User user;
 
     public void saveUser(User test) {
-        Log.d("SAVE USER","Begin");
+        Log.d("SAVE USER", "Begin");
         DatabaseReference userRef = databaseReference.child("users").child(test.getuID());
         userRef.child("email").setValue(test.getEmail());
-        Log.d("SAVE USER","Main");
-        if(test.getCarbonFootprint() != null){
+        Log.d("SAVE USER", "Main");
+        if (test.getCarbonFootprint() != null) {
             //userRef.child("carbonFootprint").setValue(test.getCarbonFootprint().toMap());
             this.saveCarbonFootprint(test.getuID(), test.getCarbonFootprint());
-            Log.d("SAVE USER","Carbon");
+            Log.d("SAVE USER", "Carbon");
         }
-        if(test.getEcoTracker() != null){
+        if (test.getEcoTracker() != null) {
             this.saveEcoTracker(test.getuID(), test.getEcoTracker());
             //userRef.child("ecoTracker").setValue(test.getEcoTracker().toMap());
-            Log.d("SAVE USER","Eco");
-        }
-    private User user;
-
-    public void saveUser(User test) {
-        Log.d("SAVE USER","Begin");
-        DatabaseReference userRef = databaseReference.child("users").child(test.getuID());
-        userRef.child("email").setValue(test.getEmail());
-        Log.d("SAVE USER","Main");
-        if(test.getCarbonFootprint() != null){
-            //userRef.child("carbonFootprint").setValue(test.getCarbonFootprint().toMap());
-            this.saveCarbonFootprint(test.getuID(), test.getCarbonFootprint());
-            Log.d("SAVE USER","Carbon");
-        }
-        if(test.getEcoTracker() != null){
-            this.saveEcoTracker(test.getuID(), test.getEcoTracker());
-            //userRef.child("ecoTracker").setValue(test.getEcoTracker().toMap());
-            Log.d("SAVE USER","Eco");
+            Log.d("SAVE USER", "Eco");
         }
     }
 
@@ -96,7 +79,6 @@ public class FirebaseHelper {
     }
 
     public void fetchEcoTrackerActivity(String userId, String category, String activityId) {
-    public void fetchEcoTrackerActivity(String userId, String category, String activityId) {
         DatabaseReference activityRef = databaseReference.child("users").child(userId).child("ecoTracker").child(category).child(activityId);
 
         activityRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -138,9 +120,8 @@ public class FirebaseHelper {
 
     public interface UserFetchListener {
         void onUserFetched(User user);
-        void onFetchFailed(String errorMessage);
-    public interface UserFetchListener {
-        void onUserFetched(User user);
+
         void onFetchFailed(String errorMessage);
     }
+
 }

@@ -34,6 +34,7 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.plantezeapp.MainActivity;
 import com.plantezeapp.R;
+import com.plantezeapp.Track.Tracker;
 
 public class Comparison extends AppCompatActivity {
     private double percentage = 0;
@@ -54,7 +55,7 @@ public class Comparison extends AppCompatActivity {
         moveToAvg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Comparison.this, MainActivity.class);
+                Intent intent=new Intent(Comparison.this, Tracker.class);
                 startActivity(intent);
             }
         });
@@ -64,7 +65,7 @@ public class Comparison extends AppCompatActivity {
         BarChart barChart = findViewById(R.id.barChart);
         double[] values = {CarbonFootprintBreakdown2.total, IntroPage.val, 2000}; // assuming that global avgs are in tons
         String[] labels =  {"User", "Average Resident of " + IntroPage.item, "Global Target (to reduce climate change)"};
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        ArrayList<BarEntry> barEntries = new ArrayList<BarEntry>();
         double difference = 0;
         double globalDifference = 0;
 

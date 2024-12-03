@@ -61,9 +61,15 @@ public class IntroPage extends AppCompatActivity {
         moveToQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                val = countryValues.get(item) * 1000;
-                Intent intent=new Intent(IntroPage.this, QuestionPage.class);
-                startActivity(intent);
+                if (!item.equals("Country")){
+                    val = countryValues.get(item) * 1000;
+                    Intent intent=new Intent(IntroPage.this, QuestionPage.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(IntroPage.this, "Please select a country/region", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -72,7 +78,7 @@ public class IntroPage extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 item = parent.getItemAtPosition(position).toString();
 //                val = countryValues.get(item);
-                Toast.makeText(IntroPage.this, "hi " + countryValues.get(item), Toast.LENGTH_SHORT).show();
+               //Toast.makeText(IntroPage.this, "hi " + countryValues.get(item), Toast.LENGTH_SHORT).show();
 
             }
 

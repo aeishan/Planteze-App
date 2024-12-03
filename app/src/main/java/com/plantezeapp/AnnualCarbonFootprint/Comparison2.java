@@ -38,6 +38,7 @@ import com.plantezeapp.Database.FirebaseHelper;
 import com.plantezeapp.Database.User;
 import com.plantezeapp.MainActivity;
 import com.plantezeapp.R;
+import com.plantezeapp.Track.Tracker;
 
 public class Comparison2 extends AppCompatActivity implements FirebaseHelper.UserFetchListener{
     private double percentage = 0;
@@ -59,7 +60,7 @@ public class Comparison2 extends AppCompatActivity implements FirebaseHelper.Use
         moveToTracker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Comparison2.this, MainActivity.class);
+                Intent intent=new Intent(Comparison2.this, Tracker.class);
                 startActivity(intent);
             }
         });
