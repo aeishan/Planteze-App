@@ -20,6 +20,8 @@ import com.plantezeapp.Database.FirebaseHelper;
 import com.plantezeapp.Database.User;
 import com.plantezeapp.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,6 +60,11 @@ public class Track extends AppCompatActivity implements FirebaseHelper.UserFetch
 
         if(date != null){
             receivedDate = true;
+        }
+        else{
+            Date today = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+            date = formatter.format(today);
         }
 
         transportation=findViewById(R.id.transportation);
@@ -115,7 +122,7 @@ public class Track extends AppCompatActivity implements FirebaseHelper.UserFetch
         this.user.setuID(userFire.getUid());
 
         // You can update the UI or perform other operations with the fetched user
-        if(user.getEcoTracker() == null){
+        if(this.user.getEcoTracker() == null){
             return;
         }
         updateTotal();
@@ -200,7 +207,7 @@ public class Track extends AppCompatActivity implements FirebaseHelper.UserFetch
             emissionPerDayAndCat.put(date, emissionPerCat);
             tracker.setEmissionByDateAndCat(emissionPerDayAndCat);
             //Log.d("Test Update Total", "Before saving category emission");
-            help.saveUser(user);
+            //help.saveUser(user);
             //Log.d("Test Update Total", "After saving category emission: " + category + emissionPerCat.get(category));
         }
 
