@@ -37,4 +37,17 @@
         android:contentDescription="Add habit"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
+        android:src="@drawable/back"
+        android:layout_margin="16dp"
+        app:backgroundTint="#373f51"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Go back to tracker"
+        />
+
 </FrameLayout>

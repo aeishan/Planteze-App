@@ -16,6 +16,7 @@ import com.plantezeapp.HabitSuggestions.HabitDatabase
 import com.plantezeapp.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.plantezeapp.Track.Tracker
 
 class HabitMenu : AppCompatActivity() {
 
@@ -29,6 +30,7 @@ class HabitMenu : AppCompatActivity() {
         val addHabitButton: FloatingActionButton = findViewById(R.id.addHabit)
         val recyclerView: RecyclerView = findViewById(R.id.rv_habits)
         val searchView: SearchView = findViewById(R.id.searchView)
+        val goBackButton: FloatingActionButton = findViewById(R.id.goBack)
 
         // Initialize DAO
         val database = HabitDatabase.getDatabase(this)
@@ -46,7 +48,6 @@ class HabitMenu : AppCompatActivity() {
             }
         )
 
-        // Set up RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = habitAdapter
 
@@ -82,6 +83,12 @@ class HabitMenu : AppCompatActivity() {
         // Navigate to HabitCreation
         addHabitButton.setOnClickListener {
             val intent = Intent(this, HabitCreation::class.java)
+            startActivity(intent)
+        }
+
+        // Navigate to HabitCreation
+        goBackButton.setOnClickListener {
+            val intent = Intent(this, Tracker::class.java)
             startActivity(intent)
         }
     }
