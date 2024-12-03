@@ -8,16 +8,20 @@ public class EcoTracker {
     private Map<String, Map<String, Map<String, Object>>> activityByDate;
     private Map<String, Double> totalEmissionPerDay;
 
+    private Map<String, Map<String, Double>> emissionByDateAndCat;
+
     // Constructor
     public EcoTracker() {
         this.totalEmissionPerDay = new HashMap<>();
         this.activityByDate = new HashMap<>();
+        this.emissionByDateAndCat = new HashMap<>();
     }
 
     public EcoTracker(String userId) {
         this.userId = userId;
         this.totalEmissionPerDay = new HashMap<>();
         this.activityByDate = new HashMap<>();
+        this.emissionByDateAndCat = new HashMap<>();
     }
 
     public String getUserId() {
@@ -27,6 +31,7 @@ public class EcoTracker {
         this.userId = userId;
     }
 
+    //EmissionPerDay Based on Date
     public Map<String, Double> getTotalEmissionPerDay() {
         return totalEmissionPerDay;
     }
@@ -38,10 +43,25 @@ public class EcoTracker {
     public double getEmissionForDay(String date) {
         return totalEmissionPerDay.getOrDefault(date, 0.0);
     }
+
     public void addOrUpdateEmission(String date, double emission) {
         totalEmissionPerDay.put(date, emission);
     }
 
+    //Emission Based on Date and Category
+    public void setEmissionByDateAndCat(Map<String, Map<String, Double>> emissionByDateAndCat){
+        this.emissionByDateAndCat = emissionByDateAndCat;
+    }
+    public Map<String, Map<String, Double>> getEmissionByDateAndCat() {
+        return emissionByDateAndCat;
+    }
+
+    public void addOrUpdateEmissionByDateAndCat(String date, String category, double emission) {
+        emissionByDateAndCat.putIfAbsent(date, new HashMap<>());
+        emissionByDateAndCat.get(date).put(category, emission);
+    }
+
+    //Activity Functions
     public Map<String, Map<String, Map<String, Object>>> getActivityByDate() {
         return activityByDate;
     }
@@ -84,6 +104,7 @@ public class EcoTracker {
         result.put("userId", userId);
         result.put("activityByDate", activityByDate);
         result.put("totalEmissionPerDay", totalEmissionPerDay);
+        result.put("emissionByDateAndCat", emissionByDateAndCat);
         return result;
     }
 }

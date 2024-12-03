@@ -15,6 +15,12 @@
         android:theme="@style/Theme.PlantezeApp"
         tools:targetApi="31">
         <activity
+            android:name=".Calendar.ViewDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Calendar.CalendarTrack"
+            android:exported="false" />
+        <activity
             android:name=".Track.Tracker"
             android:exported="false" />
         <activity

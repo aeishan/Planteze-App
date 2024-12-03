@@ -11,11 +11,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.plantezeapp.Calendar.CalendarTrack;
 import com.plantezeapp.R;
 import com.plantezeapp.Track.Track;
 
 public class WelcomePage extends AppCompatActivity {
-    private Button moveToRegister, moveToLogin;
+    private Button moveToRegister, moveToLogin, test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class WelcomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 }

@@ -11,10 +11,10 @@ public class Information {
 
     static{
         EMISSION_FACTOR = new HashMap<>();
-        EMISSION_FACTOR.put("Gas Vehicle", 0.24);
-        EMISSION_FACTOR.put("Diesel Vehicle", 0.27);
-        EMISSION_FACTOR.put("Hybrid Vehicle", 0.16);
-        EMISSION_FACTOR.put("Electric Vehicle", 0.05);
+        EMISSION_FACTOR.put("Gasoline", 0.24);
+        EMISSION_FACTOR.put("Diesel", 0.27);
+        EMISSION_FACTOR.put("Hybrid", 0.16);
+        EMISSION_FACTOR.put("Electric", 0.05);
         EMISSION_FACTOR.put("Public Transportation", 5.25);
         EMISSION_FACTOR.put("Short Haul(Less than 1500km)", 150.0);
         EMISSION_FACTOR.put("Long Haul(More than 1500km)", 550.0);

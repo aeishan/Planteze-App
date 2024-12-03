@@ -2,6 +2,7 @@ package com.plantezeapp.Track;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,13 +18,14 @@ import com.plantezeapp.Track.TransportationTypes.PersonalVehicle;
 import com.plantezeapp.Track.TransportationTypes.PublicTransportation;
 import com.plantezeapp.Track.TransportationTypes.Walking;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Transportation extends AppCompatActivity {
 
-    private Button back;
-    private Button vehicle;
-    private Button transportation;
-    private Button walk;
-    private Button flight;
+    private String date;
+    private boolean receivedDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +37,25 @@ public class Transportation extends AppCompatActivity {
             return insets;
         });
 
+        Button back;
+        Button vehicle;
+        Button transportation;
+        Button walk;
+        Button flight;
+        Intent intent = getIntent();
+        date = intent.getStringExtra("sentDate");
+
+        if(date != null){
+            Log.d("Date","Received Transportation");
+            receivedDate = true;
+        }
+
         back=findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Transportation.this, Track.class);
+                intent.putExtra("sentDate", date);
                 startActivity(intent);
             }
         });
@@ -49,6 +65,9 @@ public class Transportation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Transportation.this, PersonalVehicle.class);
+                if(receivedDate){
+                    intent.putExtra("sentDate", date);
+                }
                 startActivity(intent);
             }
         });
@@ -58,6 +77,9 @@ public class Transportation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Transportation.this, PublicTransportation.class);
+                if(receivedDate){
+                    intent.putExtra("sentDate", date);
+                }
                 startActivity(intent);
             }
         });
@@ -67,6 +89,9 @@ public class Transportation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Transportation.this, Walking.class);
+                if(receivedDate){
+                    intent.putExtra("sentDate", date);
+                }
                 startActivity(intent);
             }
         });
@@ -76,6 +101,9 @@ public class Transportation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Transportation.this, Flight.class);
+                if(receivedDate){
+                    intent.putExtra("sentDate", date);
+                }
                 startActivity(intent);
             }
         });
