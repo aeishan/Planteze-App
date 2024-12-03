@@ -164,6 +164,7 @@ public class CalendarTrack extends AppCompatActivity implements FirebaseHelper.U
                             categoryEmission += Information.EMISSION_FACTOR.get(activityId) * factor;
                         }
                         else{
+                            Log.d("TESTTESTTEST", specific);
                             emission += Information.EMISSION_FACTOR.get(specific) * factor;
                             categoryEmission += Information.EMISSION_FACTOR.get(specific) * factor;
                         }

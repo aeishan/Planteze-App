@@ -136,7 +136,7 @@ public class PersonalVehicle extends AppCompatActivity implements FirebaseHelper
                     }
 
 
-                    if(car == null){
+                    if(car == null || car.equals("I don’t know")){
                         activity.put("Gasoline", Double.parseDouble(distance));
                         tracker.addActivity(date,"Transportation", "Personal Vehicle", activity);
                     }
