@@ -20,6 +20,7 @@ import com.plantezeapp.Calendar.ViewDetails;
 import com.plantezeapp.Database.EcoTracker;
 import com.plantezeapp.Database.FirebaseHelper;
 import com.plantezeapp.Database.User;
+import com.plantezeapp.HabitSuggestions.Activities.HabitMenu;
 import com.plantezeapp.R;
 
 import java.text.SimpleDateFormat;
@@ -50,6 +51,7 @@ public class Tracker extends AppCompatActivity implements FirebaseHelper.UserFet
         Button track;
         Button calendar;
         Button details;
+        Button habit;
 
         track = findViewById(R.id.track);
         track.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +77,15 @@ public class Tracker extends AppCompatActivity implements FirebaseHelper.UserFet
             public void onClick(View v) {
                 Intent intent=new Intent(Tracker.this, ViewDetails.class);
                 intent.putExtra("sentDate", date);
+                startActivity(intent);
+            }
+        });
+
+        habit = findViewById(R.id.goToHabit);
+        habit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Tracker.this, HabitMenu.class);
                 startActivity(intent);
             }
         });

@@ -80,7 +80,11 @@
             android:name=".MainActivity"
             android:exported="false"/>
         <activity
-                android:name=".HabitSuggestions.Activities.HabitMenu"
+            android:name=".HabitSuggestions.Activities.HabitMenu"
+            android:exported="false"/>
+
+        <activity
+                android:name=".UserLogin.WelcomePage"
                 android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
