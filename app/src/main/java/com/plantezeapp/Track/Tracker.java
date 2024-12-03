@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.plantezeapp.Calendar.CalendarTrack;
+import com.plantezeapp.Calendar.ViewDetails;
 import com.plantezeapp.Database.EcoTracker;
 import com.plantezeapp.Database.FirebaseHelper;
 import com.plantezeapp.Database.User;
@@ -48,6 +49,7 @@ public class Tracker extends AppCompatActivity implements FirebaseHelper.UserFet
 
         Button track;
         Button calendar;
+        Button details;
 
         track = findViewById(R.id.track);
         track.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +65,16 @@ public class Tracker extends AppCompatActivity implements FirebaseHelper.UserFet
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Tracker.this, CalendarTrack.class);
+                startActivity(intent);
+            }
+        });
+
+        details = findViewById(R.id.details);
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Tracker.this, ViewDetails.class);
+                intent.putExtra("sentDate", date);
                 startActivity(intent);
             }
         });

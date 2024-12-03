@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.plantezeapp.Database.CarbonFootprint;
 import com.plantezeapp.Database.EcoTracker;
 import com.plantezeapp.Database.FirebaseHelper;
 import com.plantezeapp.Database.User;
@@ -72,9 +73,7 @@ public class PersonalVehicle extends AppCompatActivity implements FirebaseHelper
         carType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(!(parent.getItemAtPosition(position).equals("Choose Option"))){
-                    item = parent.getItemAtPosition(position).toString();
-                }
+                item = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -86,10 +85,10 @@ public class PersonalVehicle extends AppCompatActivity implements FirebaseHelper
 
         ArrayList<String> cars = new ArrayList<String>();
         cars.add("Choose Option");
-        cars.add("Gas Vehicle");
-        cars.add("Diesel Vehicle");
-        cars.add("Hybrid Vehicle");
-        cars.add("Electric Vehicle");
+        cars.add("Gasoline");
+        cars.add("Diesel");
+        cars.add("Hybrid");
+        cars.add("Electric");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, cars);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         carType.setAdapter(adapter);
@@ -115,8 +114,38 @@ public class PersonalVehicle extends AppCompatActivity implements FirebaseHelper
                 if(distance.isEmpty() || Double.parseDouble(distance) <= 0){
                     Toast.makeText(PersonalVehicle.this, "Enter a valid value", Toast.LENGTH_SHORT).show();
                 }
-                else if(item == null){
-                    Toast.makeText(PersonalVehicle.this, distance + " kilometers driven in default car", Toast.LENGTH_SHORT).show();
+                else if(item.equals("Choose Option")){
+                    CarbonFootprint cb = user.getCarbonFootprint();
+                    String car = cb.getAnswer("Q1");
+
+                    if (user.getEcoTracker() == null){
+                        user.ecoTracker = new EcoTracker();
+                    }
+
+                    EcoTracker tracker = user.getEcoTracker();
+                    Map<String, Map<String, Map<String, Object>>> activities = tracker.getActivityByDate();
+                    HashMap<String, Double> activity;
+
+                    if(activities.get(date) == null || activities.get(date).get("Transportation") == null || activities.get(date).get("Transportation").get("Personal Vehicle") == null){
+                        Log.d("TEST SUBMIT", "Null Hashmap");
+                        activity = new HashMap<String, Double>();
+                    }
+                    else{
+                        Log.d("TEST SUBMIT", "Retrieving Hashmap");
+                        activity = (HashMap<String, Double>) activities.get(date).get("Transportation").get("Personal Vehicle");
+                    }
+
+
+                    if(car == null){
+                        activity.put("Gasoline", Double.parseDouble(distance));
+                        tracker.addActivity(date,"Transportation", "Personal Vehicle", activity);
+                    }
+                    else{
+                        activity.put(car, Double.parseDouble(distance));
+                        tracker.addActivity(date,"Transportation", "Personal Vehicle", activity);
+                    }
+                    help.saveUser(user);
+
                 }
                 else{
                     Double emission = Information.EMISSION_FACTOR.get(item) * Double.parseDouble(distance);

@@ -54,6 +54,7 @@ public class CalendarTrack extends AppCompatActivity implements FirebaseHelper.U
 
         Button back;
         Button edit;
+        Button details;
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +70,16 @@ public class CalendarTrack extends AppCompatActivity implements FirebaseHelper.U
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(CalendarTrack.this, Track.class);
+                intent.putExtra("sentDate", formattedDate);
+                startActivity(intent);
+            }
+        });
+
+        details = findViewById(R.id.details);
+        details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(CalendarTrack.this, ViewDetails.class);
                 intent.putExtra("sentDate", formattedDate);
                 startActivity(intent);
             }
