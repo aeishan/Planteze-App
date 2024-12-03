@@ -595,7 +595,13 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
         Log.d("MainActivity", "User fetched: " + user.getEmail());
         this.user = user;
 
-        CarbonFootprint cfoot = user.getCarbonFootprint();
+        CarbonFootprint cfoot;
+        if(user.getCarbonFootprint() == null){
+            cfoot = new CarbonFootprint();
+        }
+        else{
+            cfoot = user.getCarbonFootprint();
+        }
         Log.d("MainActivity", "is NULL?? : " + cfoot);
 
 

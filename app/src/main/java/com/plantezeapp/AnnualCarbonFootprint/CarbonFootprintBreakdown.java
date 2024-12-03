@@ -27,7 +27,6 @@ import java.text.DecimalFormat;
 
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.plantezeapp.Database.CarbonFootprint;
@@ -37,13 +36,13 @@ import com.plantezeapp.MainActivity;
 import com.plantezeapp.R;
 
 public class CarbonFootprintBreakdown extends AppCompatActivity implements FirebaseHelper.UserFetchListener{
-    float total = 0;
+    static float total = 0;
     double transE = 0;
     double foodE= 0;
     double housingE = 0;
     double consumptionE = 0;
-    double countryVal = 0;
-    String country = "";
+    static double countryVal = 0;
+    static String country = "";
 
 
 
@@ -62,7 +61,7 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
         moveToAvg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(CarbonFootprintBreakdown.this, Comparison.class);
+                Intent intent=new Intent(CarbonFootprintBreakdown.this, Comparison2.class);
                 startActivity(intent);
             }
         });
@@ -88,7 +87,7 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
         housingE = Double.parseDouble(cfoot.getAnswer("housingE"));
         consumptionE = Double.parseDouble(cfoot.getAnswer("consumptionE"));
         country = cfoot.getAnswer("country");
-        countryVal = Double.parseDouble(cfoot.getAnswer("countryValue"));
+        countryVal = Double.parseDouble(cfoot.getAnswer("countryValue")) * 1000;
 
         PieChart pieChart = findViewById(R.id.pieChart);
 
@@ -130,33 +129,6 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
 
         textView.setText("Your total annual carbon emission is: " + total + " kg/year.\nHere is your breakdown:");
 
-
-
-//        // change all of these statements
-//        if (difference < 0 && globalDifference < 0){
-//            percentage = percentage * -100;
-//            globalPercentage = globalPercentage * -100;
-//
-//            textView.setText("TOtal: " + total + " country: " + country + " val: " + countryVal);
-//        }
-//        else if (difference > 0 && globalDifference < 0){
-//            percentage = percentage * 100;
-//            globalPercentage = globalPercentage * -100;
-//
-//            textView.setText("Your total annual carbon emission is: " + total + " kg/year. You are \nHere is your breakdown:");
-//        }
-//        else if (difference < 0 && globalDifference > 0){
-//            percentage = percentage * -100;
-//            globalPercentage = globalPercentage * 100;
-//
-//            textView.setText("Your total annual carbon emission is: " + total + " kg/year. You are \nHere is your breakdown:");
-//        }
-//        else{
-//            percentage = percentage * 100;
-//            globalPercentage = globalPercentage * 100;
-//
-//            textView.setText("TOtal: " + total + " country: " + country + " val: " + countryVal);
-//        }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, " ");
 

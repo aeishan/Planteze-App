@@ -15,7 +15,10 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -26,44 +29,57 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
 
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.plantezeapp.Database.CarbonFootprint;
+import com.plantezeapp.Database.FirebaseHelper;
+import com.plantezeapp.Database.User;
 import com.plantezeapp.MainActivity;
 import com.plantezeapp.R;
 
-public class Comparison extends AppCompatActivity {
+public class Comparison2 extends AppCompatActivity implements FirebaseHelper.UserFetchListener{
     private double percentage = 0;
     private double globalPercentage = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_comparison);
+        setContentView(R.layout.activity_comparison2);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Button moveToAvg = findViewById(R.id.moveToTracker);
+        Button moveToTracker = findViewById(R.id.moveToTracker);
 
-        moveToAvg.setOnClickListener(new View.OnClickListener() {
+        moveToTracker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Comparison.this, MainActivity.class);
+                Intent intent=new Intent(Comparison2.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
 
+        FirebaseHelper help = new FirebaseHelper();
+        FirebaseUser userFire = FirebaseAuth.getInstance().getCurrentUser();
+        help.fetchUser(userFire.getUid(), this);
+    }
+
+
+
+    @Override
+    public void onUserFetched(User user) {
+        Log.d("MainActivity", "User fetched: " + user.getEmail());
+
         TextView textView = findViewById(R.id.barChartTitle);
         BarChart barChart = findViewById(R.id.barChart);
-        double[] values = {CarbonFootprintBreakdown2.total, IntroPage.val, 2000}; // assuming that global avgs are in tons
-        String[] labels =  {"User", "Average Resident of " + IntroPage.item, "Global Target (to reduce climate change)"};
+        double[] values = {CarbonFootprintBreakdown.total, CarbonFootprintBreakdown.countryVal, 2000}; // assuming that global avgs are in tons
+        String[] labels =  {"User", "Average Resident of " + CarbonFootprintBreakdown.country, "Global Target (to reduce climate change)"};
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         double difference = 0;
         double globalDifference = 0;
@@ -79,9 +95,9 @@ public class Comparison extends AppCompatActivity {
             barEntries.add(barEntry);
         }
 
-        difference = CarbonFootprintBreakdown2.total - IntroPage.val;
-        globalDifference = CarbonFootprintBreakdown2.total - 2000.0; // 2 tons (global target for reducing climate change) = 2000.0 kg
-        percentage = difference / IntroPage.val;
+        difference = CarbonFootprintBreakdown.total - CarbonFootprintBreakdown.countryVal;
+        globalDifference = CarbonFootprintBreakdown.total - 2000.0; // 2 tons (global target for reducing climate change) = 2000.0 kg
+        percentage = difference / CarbonFootprintBreakdown.countryVal;
         globalPercentage = globalDifference / 2000.0;
         percentage = percentage * 100;
         globalPercentage = globalPercentage * 100;
@@ -93,7 +109,7 @@ public class Comparison extends AppCompatActivity {
             globalPercentage = globalPercentage * -1;
         }
 
-        textView.setText("Here is how you (blue) compare to the average resident of " + IntroPage.item +
+        textView.setText("Here is how you (blue) compare to the average resident of " + CarbonFootprintBreakdown.country +
                 " (red) and the global targets to reduce climate change (black):");
         Log.d("WE GOT IT", "YEAAAA");
 
@@ -129,13 +145,13 @@ public class Comparison extends AppCompatActivity {
                     float roundedGPercentage = Float.parseFloat(gPercent2);
 
                     if (label == 1.0){
-                        Toast.makeText(Comparison.this, "User Total Emission: " + CarbonFootprintBreakdown2.total, Toast.LENGTH_LONG).show();
+                        Toast.makeText(Comparison2.this, "User Total Emission: " + CarbonFootprintBreakdown.total, Toast.LENGTH_LONG).show();
                     }
                     else if (label == 2.0){
-                        Toast.makeText(Comparison.this, "You are " + roundedPercentage + "% away from average emission in " + IntroPage.item + ".", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Comparison2.this, "You are " + roundedPercentage + "% away from average emission in " + IntroPage.item + ".", Toast.LENGTH_LONG).show();
                     }
                     else if (label == 3.0){
-                        Toast.makeText(Comparison.this, "You are " + roundedGPercentage + "% away from global targets.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Comparison2.this, "You are " + roundedGPercentage + "% away from global targets.", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -147,5 +163,11 @@ public class Comparison extends AppCompatActivity {
         });
 
         barChart.invalidate();
+    }
+
+    @Override
+    public void onFetchFailed(String errorMessage) {
+        Log.d("MainActivity", "Error: User not Fetched" );
+
     }
 }

@@ -32,6 +32,7 @@ import com.plantezeapp.UserLogin.WelcomePage;
 public class IntroPage extends AppCompatActivity {
     private Button moveToQuestion;
     static String item = "";
+    static double val = 0;
     static HashMap<String, Double> countryValues;
 
     @Override
@@ -60,6 +61,7 @@ public class IntroPage extends AppCompatActivity {
         moveToQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                val = countryValues.get(item) * 1000;
                 Intent intent=new Intent(IntroPage.this, QuestionPage.class);
                 startActivity(intent);
             }
@@ -69,6 +71,7 @@ public class IntroPage extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 item = parent.getItemAtPosition(position).toString();
+//                val = countryValues.get(item);
                 Toast.makeText(IntroPage.this, "hi " + countryValues.get(item), Toast.LENGTH_SHORT).show();
 
             }
