@@ -59,9 +59,15 @@ public class Flight extends AppCompatActivity implements FirebaseHelper.UserFetc
         FirebaseHelper help = new FirebaseHelper();
         help.fetchUser(userFire.getUid(), this);
 
-        Date today = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
-        date = formatter.format(today);
+        Intent intent = getIntent();
+        date = intent.getStringExtra("sentDate");
+
+        if(date == null){
+            Log.d("Date","Not Received");
+            Date today = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+            date = formatter.format(today);
+        }
 
         flightType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -92,6 +98,7 @@ public class Flight extends AppCompatActivity implements FirebaseHelper.UserFetc
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Flight.this, Transportation.class);
+                intent.putExtra("sentDate", date);
                 startActivity(intent);
             }
         });

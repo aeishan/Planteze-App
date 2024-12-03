@@ -59,9 +59,15 @@ public class PersonalVehicle extends AppCompatActivity implements FirebaseHelper
         FirebaseHelper help = new FirebaseHelper();
         help.fetchUser(userFire.getUid(), this);
 
-        Date today = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
-        date = formatter.format(today);
+        Intent intent = getIntent();
+        date = intent.getStringExtra("sentDate");
+
+        if(date == null){
+            Log.d("Date","Not Received");
+            Date today = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+            date = formatter.format(today);
+        }
 
         carType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -93,6 +99,7 @@ public class PersonalVehicle extends AppCompatActivity implements FirebaseHelper
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(PersonalVehicle.this, Transportation.class);
+                intent.putExtra("sentDate", date);
                 startActivity(intent);
             }
         });

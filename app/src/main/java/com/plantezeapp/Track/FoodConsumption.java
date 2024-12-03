@@ -56,9 +56,15 @@ public class FoodConsumption extends AppCompatActivity implements FirebaseHelper
         FirebaseHelper help = new FirebaseHelper();
         help.fetchUser(userFire.getUid(), this);
 
-        Date today = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
-        date = formatter.format(today);
+        Intent intent = getIntent();
+        date = intent.getStringExtra("sentDate");
+
+        if(date == null){
+            Date today = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+            date = formatter.format(today);
+        }
+
 
         foodChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -92,6 +98,7 @@ public class FoodConsumption extends AppCompatActivity implements FirebaseHelper
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(FoodConsumption.this, Track.class);
+                intent.putExtra("sentDate", date);
                 startActivity(intent);
             }
         });
@@ -136,7 +143,8 @@ public class FoodConsumption extends AppCompatActivity implements FirebaseHelper
                     tracker.addActivity(date, "Food", "Meal", activity);
                     Log.d("TEST SUBMIT", user.getEmail());
 
-                    help.saveUser(user);
+                    help.saveEcoTracker(user.getuID(), tracker);
+                    //help.saveUser(user);
 
                     Toast.makeText(FoodConsumption.this, emission + " kg of CO2 emitted", Toast.LENGTH_SHORT).show();
                  }

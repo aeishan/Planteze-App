@@ -53,15 +53,21 @@ public class Clothing extends AppCompatActivity implements FirebaseHelper.UserFe
         FirebaseHelper help = new FirebaseHelper();
         help.fetchUser(userFire.getUid(), this);
 
-        Date today = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
-        date = formatter.format(today);
+        Intent intent = getIntent();
+        date = intent.getStringExtra("sentDate");
+
+        if(date == null){
+            Date today = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+            date = formatter.format(today);
+        }
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Clothing.this, Shopping.class);
+                intent.putExtra("sentDate", date);
                 startActivity(intent);
             }
         });

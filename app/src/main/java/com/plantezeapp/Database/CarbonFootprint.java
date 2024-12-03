@@ -47,7 +47,3 @@ public class CarbonFootprint {
         return result;
     }
 }
-
-
-
-

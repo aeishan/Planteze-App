@@ -2,6 +2,7 @@ package com.plantezeapp.Track;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,6 +22,8 @@ import com.plantezeapp.Track.TransportationTypes.Walking;
 public class Shopping extends AppCompatActivity {
 
 
+    private String date;
+    private boolean receivedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +41,22 @@ public class Shopping extends AppCompatActivity {
         Button electronics;
         Button bills;
         Button other;
+        Intent intent = getIntent();
+        date = intent.getStringExtra("sentDate");
+
+        if(date != null){
+            Log.d("Date","Received Transportation");
+            receivedDate = true;
+        }
 
         clothing=findViewById(R.id.clothing);
         clothing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Shopping.this, Clothing.class);
+                if(receivedDate){
+                    intent.putExtra("sentDate", date);
+                }
                 startActivity(intent);
             }
         });
@@ -53,6 +66,9 @@ public class Shopping extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Shopping.this, Electronics.class);
+                if(receivedDate){
+                    intent.putExtra("sentDate", date);
+                }
                 startActivity(intent);
             }
         });
@@ -62,6 +78,9 @@ public class Shopping extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Shopping.this, Bills.class);
+                if(receivedDate){
+                    intent.putExtra("sentDate", date);
+                }
                 startActivity(intent);
             }
         });
@@ -71,6 +90,9 @@ public class Shopping extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Shopping.this, Other.class);
+                if(receivedDate){
+                    intent.putExtra("sentDate", date);
+                }
                 startActivity(intent);
             }
         });
@@ -80,6 +102,7 @@ public class Shopping extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Shopping.this, Track.class);
+                intent.putExtra("sentDate", date);
                 startActivity(intent);
             }
         });

@@ -60,9 +60,14 @@ public class Bills extends AppCompatActivity implements FirebaseHelper.UserFetch
         FirebaseHelper help = new FirebaseHelper();
         help.fetchUser(userFire.getUid(), this);
 
-        Date today = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
-        date = formatter.format(today);
+        Intent intent = getIntent();
+        date = intent.getStringExtra("sentDate");
+
+        if(date == null){
+            Date today = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
+            date = formatter.format(today);
+        }
 
         billType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -94,6 +99,7 @@ public class Bills extends AppCompatActivity implements FirebaseHelper.UserFetch
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Bills.this, Shopping.class);
+                intent.putExtra("sentDate", date);
                 startActivity(intent);
             }
         });

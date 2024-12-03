@@ -27,15 +27,14 @@ public class FirebaseHelper {
         Log.d("SAVE USER","Main");
         if(test.getCarbonFootprint() != null){
             //userRef.child("carbonFootprint").setValue(test.getCarbonFootprint().toMap());
-            this.saveCarbonFootprint(user.getuID(), user.getCarbonFootprint());
+            this.saveCarbonFootprint(test.getuID(), test.getCarbonFootprint());
             Log.d("SAVE USER","Carbon");
         }
         if(test.getEcoTracker() != null){
-            this.saveEcoTracker(user.getuID(), user.getEcoTracker());
+            this.saveEcoTracker(test.getuID(), test.getEcoTracker());
             //userRef.child("ecoTracker").setValue(test.getEcoTracker().toMap());
             Log.d("SAVE USER","Eco");
         }
-
     }
 
     public void fetchUser(String userID, final UserFetchListener listener){
@@ -48,15 +47,6 @@ public class FirebaseHelper {
                 if (user != null) {
                     System.out.println("User fetched successfully: " + user);
                     listener.onUserFetched(user);
-                    /*Log.d("Tester","Not Null");
-                    if(user.getEmail() == null){
-                        Log.d("Tester", "Null ID");
-                    }
-                    else{
-                        Log.d("Tester",user.getEmail());
-                    }*/
-
-
                 } else {
                     listener.onFetchFailed("No user found with ID: " + userID);
                     //System.out.println("No user found with ID: " + userID);
