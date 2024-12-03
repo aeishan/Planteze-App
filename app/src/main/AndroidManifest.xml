@@ -31,6 +31,15 @@
             android:name=".Track.Tracker"
             android:exported="false" />
         <activity
+            android:name=".AnnualCarbonFootprint.Comparison2"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.CarbonFootprintBreakdown2"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.Comparison"
+            android:exported="false" />
+        <activity
             android:name=".UserLogin.ConfirmationSignupPage"
             android:exported="false" />
         <activity
@@ -75,6 +84,15 @@
             android:exported="false" />
         <activity
             android:name=".UserLogin.RegisterAccountPage"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.CarbonFootprintBreakdown"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.QuestionPage"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.IntroPage"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
