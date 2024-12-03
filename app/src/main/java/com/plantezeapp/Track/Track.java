@@ -115,6 +115,9 @@ public class Track extends AppCompatActivity implements FirebaseHelper.UserFetch
         this.user.setuID(userFire.getUid());
 
         // You can update the UI or perform other operations with the fetched user
+        if(user.getEcoTracker() == null){
+            return;
+        }
         updateTotal();
     }
 
@@ -126,12 +129,28 @@ public class Track extends AppCompatActivity implements FirebaseHelper.UserFetch
     public void updateTotal(){
         Double emission = 0.0;
         Map<String, Map<String, Object>> totalActivities;
-        EcoTracker tracker = user.getEcoTracker();
-        if(user.getEcoTracker().getActivityByDate().get(date) == null){
+        EcoTracker tracker;
+        Map<String, Map<String, Map<String, Object>>> activityByDate;
+
+        if(user.getEcoTracker() == null){
+            tracker = new EcoTracker();
+        }
+        else{
+            tracker = user.getEcoTracker();
+        }
+
+        if(tracker.getActivityByDate() == null){
+            activityByDate = new HashMap<String, Map<String, Map<String, Object>>>();
+        }
+        else{
+            activityByDate = tracker.getActivityByDate();
+        }
+
+        if(activityByDate.get(date) == null){
             totalActivities = new HashMap<String, Map<String, Object>>();
         }
         else{
-            totalActivities = user.getEcoTracker().getActivityByDate().get(date);
+            totalActivities = activityByDate.get(date);
         }
 
         for(String category: totalActivities.keySet()){
@@ -185,10 +204,12 @@ public class Track extends AppCompatActivity implements FirebaseHelper.UserFetch
             //Log.d("Test Update Total", "After saving category emission: " + category + emissionPerCat.get(category));
         }
 
-        Map<String, Double> emissionPerDay = user.getEcoTracker().getTotalEmissionPerDay();;
+        Map<String, Double> emissionPerDay = tracker.getTotalEmissionPerDay();;
         //Log.d("Test Update Total", "Before saving to emissionPerDay");
         emissionPerDay.put(date, emission);
         //Log.d("Test Update Total", "Before saveUser");
+        user.ecoTracker = tracker;
+        user.setuID(userFire.getUid());
         help.saveUser(user);
     }
 }
