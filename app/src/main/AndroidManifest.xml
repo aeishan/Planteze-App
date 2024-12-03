@@ -14,6 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantezeApp"
         tools:targetApi="31">
+
+        <activity
+            android:name=".HabitSuggestions.Activities.HabitCreation"
+            android:exported="false" />
+        <activity
+            android:name=".HabitSuggestions.Activities.HabitFilter"
+            android:exported="false" />
         <activity
             android:name=".Calendar.ViewDetails"
             android:exported="false" />
@@ -71,13 +78,12 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
-            android:name=".UserLogin.WelcomePage"
-            android:exported="true">
+                android:name=".HabitSuggestions.Activities.HabitMenu"
+                android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

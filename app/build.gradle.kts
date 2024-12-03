@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("org.jetbrains.kotlin.android")  // For Kotlin Android support
+    id("kotlin-kapt")  // For Kotlin annotation processing (KAPT)
     id("com.google.gms.google-services")
 }
 
@@ -27,8 +29,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true
@@ -42,7 +48,6 @@ buildscript {
 }
 
 dependencies {
-
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-database")
@@ -54,9 +59,25 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.filament.android)
+
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation("com.google.firebase:firebase-database-ktx")
+
+    //room
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+
+    //Mockito
+    testImplementation("org.mockito:mockito-core:5.6.2") // Mockito core library
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0") // Kotlin extensions
+    testImplementation("org.mockito:mockito-android:4.4.0")
+
 }
