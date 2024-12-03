@@ -22,10 +22,56 @@
             android:name=".HabitSuggestions.Activities.HabitFilter"
             android:exported="false" />
         <activity
+            android:name=".Calendar.ViewDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Calendar.CalendarTrack"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Tracker"
+            android:exported="false" />
+        <activity
             android:name=".UserLogin.ConfirmationSignupPage"
             android:exported="false" />
         <activity
             android:name=".UserLogin.LoginAccountPage"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Other"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Bills"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Electronics"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Clothing"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.Flight"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.Walking"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.PublicTransportation"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.PersonalVehicle"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Transportation"
+            android:exported="false"
+            android:theme="@style/Theme.PlantezeApp" />
+        <activity
+            android:name=".Track.Shopping"
+            android:exported="false" />
+        <activity
+            android:name=".Track.FoodConsumption"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Track"
             android:exported="false" />
         <activity
             android:name=".UserLogin.RegisterAccountPage"
