@@ -9,11 +9,11 @@
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="251dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="321dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="48dp"
         android:gravity="center"
-        android:text="Enter a date in the form (YY-MM-DD) to calculate your carbon emissions since then."
+        android:text="Enter start and end dates in the form (YYYY-MM-DD) to calculate your C02e emissions within the time period."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,13 +22,25 @@
         android:id="@+id/userInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="100dp"
         android:hint="Enter Start Date"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <EditText
+        android:id="@+id/userInput2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter End Date"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/calculateTotal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInput" />
 
     <Button
         android:id="@+id/calculateTotal"

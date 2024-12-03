@@ -27,15 +27,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
+import java.text.DecimalFormat;
 
 public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetchListener {
 
     Button calc;
     EditText input;
+    EditText input2;
+    static String start;
+    static String end;
     private EcoTracker ecoT;
-    double foodE;
-    double transE;
-    double otherE;
+    static double foodE;
+    static double transE;
+    static double otherE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetch
         Log.d("CHECK HERE", "YEAUEA");
         calc = findViewById(R.id.calculateTotal);
         input = findViewById(R.id.userInput);
+        input2 = findViewById(R.id.userInput2);
 
 
 
@@ -67,19 +72,20 @@ public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetch
         calc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (input.getText().toString().isEmpty()){
-                    Toast.makeText(Gauge.this, "Please input a date in the correct format.", Toast.LENGTH_SHORT).show();
+                if (input.getText().toString().isEmpty() || input2.getText().toString().isEmpty()){
+                    Toast.makeText(Gauge.this, "Please input both dates in the correct format.", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     String regex = "\\d{4}-\\d{2}-\\d{2}";
-                    if (Pattern.matches(regex, input.getText())){
+                    if (Pattern.matches(regex, input.getText()) && Pattern.matches(regex, input2.getText())){
                         try {
                             LocalDate inputDate = LocalDate.parse(input.getText());
+                            LocalDate inputDate2 = LocalDate.parse(input2.getText());
 
-                            if (inputDate.isAfter(LocalDate.now())) {
-                                Toast.makeText(Gauge.this, "Please input a date in the correct format.", Toast.LENGTH_SHORT).show();
+                            if (inputDate.isAfter(inputDate2)) {
+                                Toast.makeText(Gauge.this, "End date must be after start date", Toast.LENGTH_SHORT).show();
                             } else {
-                                ecoT = user.getEcoTracker();  // is eco tracker null for a new user??
+                                ecoT = user.getEcoTracker();
                                 if (ecoT == null){
                                     Toast.makeText(Gauge.this, "No data found in Eco Tracker.", Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(Gauge.this, Tracker.class);
@@ -87,18 +93,26 @@ public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetch
                                 }
                                 else{
                                     Log.d("THIS ONE", "" + ecoT);
+                                    foodE = 0;
+                                    transE = 0;
+                                    otherE = 0;
 
-                                    calculateEmission(input.getText().toString());
+                                    calculateEmission(input.getText().toString(), input2.getText().toString());
+                                    start = input.getText().toString();
+                                    end = input2.getText().toString();
+                                    Intent intent=new Intent(Gauge.this, ecoGaugeBreakdown.class);
+                                    startActivity(intent);
+
                                 }
                             }
                         }
                         catch (Exception e){
-                            Toast.makeText(Gauge.this, "Please input a date in the correct format.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Gauge.this, "Please input both dates in the correct format.", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                     else{
-                        Toast.makeText(Gauge.this, "Please input a date in the correct format.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Gauge.this, "Please input both dates in the correct format.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -111,16 +125,16 @@ public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetch
         Log.d("MainActivity", "Error: User not Fetched" );
     }
 
-    void calculateEmission(String date){
-        LocalDate currentDate = LocalDate.now();
+    void calculateEmission(String date, String date2){
         LocalDate userDate = LocalDate.parse(date);
+        LocalDate userDate2 = LocalDate.parse(date2);
 
         Toast.makeText(Gauge.this, "Calculating Value", Toast.LENGTH_SHORT).show();
 
 
         LocalDate temp = userDate; // create a running variable
 
-        while (!temp.isAfter(currentDate)){
+        while (!temp.isAfter(userDate2)){
             try{
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy");
                 String rightDate = temp.format(formatter);
@@ -150,6 +164,17 @@ public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetch
             }
             temp = temp.plusDays(1);
         }
+
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String new_food = decimalFormat.format(foodE);
+        String new_trans = decimalFormat.format(transE);
+        String new_other = decimalFormat.format(otherE);
+
+        foodE = Double.parseDouble(new_food);
+        transE = Double.parseDouble(new_trans);
+        otherE = Double.parseDouble(new_other);
+
+
 
         Log.d("THIS ONE NOW", "food: " + foodE + ", trans: " + transE + ", other: " + otherE);
         Toast.makeText(Gauge.this, "DONE!!", Toast.LENGTH_SHORT).show();
