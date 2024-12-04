@@ -41,6 +41,7 @@ public class CalendarTrack extends AppCompatActivity implements FirebaseHelper.U
     private String formattedDate;
     CalendarView calendarView;
     Calendar calendar;
+    private EcoTracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,19 +128,35 @@ public class CalendarTrack extends AppCompatActivity implements FirebaseHelper.U
     private void updateEmission(){
         updateTotal();
         TextView total = findViewById(R.id.emission);
-        String rounded = String.format("%.2f", user.getEcoTracker().getEmissionForDay(formattedDate));
+        String rounded = String.format("%.2f", tracker.getEmissionForDay(formattedDate));
         total.setText("Total Emission: " + rounded + "kg of CO2");
     }
 
     public void updateTotal(){
         Double emission = 0.0;
         Map<String, Map<String, Object>> totalActivities;
-        EcoTracker tracker = user.getEcoTracker();
-        if(user.getEcoTracker().getActivityByDate().get(formattedDate) == null){
+        tracker = user.getEcoTracker();
+        Map<String, Map<String, Map<String, Object>>> activityByDate;
+
+        if(user.getEcoTracker() == null){
+            tracker = new EcoTracker();
+        }
+        else{
+            tracker = user.getEcoTracker();
+        }
+
+        if(tracker.getActivityByDate() == null){
+            activityByDate = new HashMap<String, Map<String, Map<String, Object>>>();
+        }
+        else{
+            activityByDate = tracker.getActivityByDate();
+        }
+
+        if(activityByDate.get(formattedDate) == null){
             totalActivities = new HashMap<String, Map<String, Object>>();
         }
         else{
-            totalActivities = user.getEcoTracker().getActivityByDate().get(formattedDate);
+            totalActivities = activityByDate.get(formattedDate);
         }
 
         for(String category: totalActivities.keySet()){
@@ -194,7 +211,7 @@ public class CalendarTrack extends AppCompatActivity implements FirebaseHelper.U
             //Log.d("Test Update Total", "After saving category emission: " + category + emissionPerCat.get(category));
         }
 
-        Map<String, Double> emissionPerDay = user.getEcoTracker().getTotalEmissionPerDay();;
+        Map<String, Double> emissionPerDay = tracker.getTotalEmissionPerDay();;
         //Log.d("Test Update Total", "Before saving to emissionPerDay");
         emissionPerDay.put(formattedDate, emission);
         //Log.d("Test Update Total", "Before saveUser");
