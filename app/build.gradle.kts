@@ -52,6 +52,7 @@ dependencies {
     implementation ("com.opencsv:opencsv:5.6")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("com.google.firebase:firebase-database")
     testImplementation ("org.mockito:mockito-core:5.5.0")
     testImplementation ("junit:junit:4.13.2")

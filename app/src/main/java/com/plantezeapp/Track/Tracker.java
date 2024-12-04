@@ -54,6 +54,7 @@ public class Tracker extends AppCompatActivity implements FirebaseHelper.UserFet
         Button calendar;
         Button details;
         Button habit;
+        Button gauge;
 
         track = findViewById(R.id.track);
         track.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +107,15 @@ public class Tracker extends AppCompatActivity implements FirebaseHelper.UserFet
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Tracker.this, com.plantezeapp.AnnualCarbonFootprint.CarbonFootprintBreakdown.class);
+                startActivity(intent);
+            }
+        });
+
+        gauge = findViewById(R.id.moveToGauge);
+        gauge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Tracker.this, Gauge.class);
                 startActivity(intent);
             }
         });
