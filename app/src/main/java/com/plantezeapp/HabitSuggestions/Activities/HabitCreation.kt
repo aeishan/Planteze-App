@@ -1,5 +1,8 @@
 package com.plantezeapp.HabitSuggestions.Activities
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -9,9 +12,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.plantezeapp.HabitSuggestions.HabitDatabase
+import com.plantezeapp.HabitSuggestions.NotificationReceiver
 import com.plantezeapp.HabitSuggestions.habitSuggestions
 import com.plantezeapp.R
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.*
 
 class HabitCreation : AppCompatActivity() {
 
@@ -57,9 +64,9 @@ class HabitCreation : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Navigate to back to HabitMenu
+        // Navigate back to HabitMenu
         backButton.setOnClickListener {
-            val intent = Intent(this, HabitMenu ::class.java)
+            val intent = Intent(this, HabitMenu::class.java)
             startActivity(intent)
         }
 
@@ -72,7 +79,10 @@ class HabitCreation : AppCompatActivity() {
             if (selectedHabit != null) {
                 lifecycleScope.launch {
                     habitDatabase.habitDao().addHabit(selectedHabit) // Insert the habit into the database
-                    Toast.makeText(this@HabitCreation,"Habit Started!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@HabitCreation, "Habit Started!", Toast.LENGTH_SHORT).show()
+
+                    // Check and schedule reminders based on active habits
+                    updateHabitReminder()
 
                     // Navigate to HabitMenuActivity
                     val intent = Intent(this@HabitCreation, HabitMenu::class.java)
@@ -83,5 +93,52 @@ class HabitCreation : AppCompatActivity() {
                 Toast.makeText(this, "Error: Habit not found", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    // Updates the reminder based on whether there are active habits
+    private fun updateHabitReminder() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val activeHabits = habitDatabase.habitDao().getAllHabitsSync() // Fetch active habits synchronously
+            withContext(Dispatchers.Main) {
+                if (activeHabits.isNotEmpty()) {
+                    scheduleHabitReminder()
+                } else {
+                    cancelHabitReminder()
+                }
+            }
+        }
+    }
+
+    // Schedules a daily reminder
+    private fun scheduleHabitReminder() {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, NotificationReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val calendar = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 9)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+        }
+
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
+    }
+
+    // Cancels the daily reminder
+    private fun cancelHabitReminder() {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, NotificationReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        alarmManager.cancel(pendingIntent)
     }
 }

@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permission to post notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Your other permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,6 +19,7 @@
         android:theme="@style/Theme.PlantezeApp"
         tools:targetApi="31">
 
+        <!-- Register your activities -->
         <activity
             android:name=".HabitSuggestions.Activities.HabitCreation"
             android:exported="false" />
@@ -107,9 +112,14 @@
             android:name=".HabitSuggestions.Activities.HabitMenu"
             android:exported="false"/>
 
+        <!-- Add the NotificationReceiver inside <application> -->
+        <receiver android:name=".HabitSuggestions.NotificationReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
-                android:name=".UserLogin.WelcomePage"
-                android:exported="true" >
+            android:name=".UserLogin.WelcomePage"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
