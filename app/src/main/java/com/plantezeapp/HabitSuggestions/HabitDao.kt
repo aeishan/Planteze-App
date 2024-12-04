@@ -18,10 +18,14 @@ interface HabitDao {
     @Update
     suspend fun updateHabit(habit: Habit)
 
-    //Habit Filters
+    // Habit Filters
     @Query("SELECT * FROM habit_table WHERE name LIKE :searchQuery OR category LIKE :searchQuery")
     fun searchHabits(searchQuery: String): LiveData<List<Habit>>
 
     @Query("SELECT * FROM habit_table")
     fun getAllHabits(): LiveData<List<Habit>>
+
+    // Synchronous query to fetch all habits
+    @Query("SELECT * FROM habit_table")
+    suspend fun getAllHabitsSync(): List<Habit>
 }

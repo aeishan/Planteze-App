@@ -17,6 +17,7 @@ import com.plantezeapp.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.plantezeapp.Track.Tracker
+import java.util.*
 
 class HabitMenu : AppCompatActivity() {
 
@@ -67,7 +68,6 @@ class HabitMenu : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    // Only observe all habits if the query is empty
                     habitDao.getAllHabits().observe(this@HabitMenu, { habits ->
                         habits?.let {
                             habitAdapter.updateData(it)
@@ -86,7 +86,7 @@ class HabitMenu : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Navigate to HabitCreation
+        // Navigate to Tracker
         goBackButton.setOnClickListener {
             val intent = Intent(this, Tracker::class.java)
             startActivity(intent)
@@ -94,7 +94,6 @@ class HabitMenu : AppCompatActivity() {
     }
 
     private fun filterHabits(query: String) {
-        // Search habits by name or category
         habitDao.searchHabits("%$query%").observe(this, { habits ->
             habits?.let {
                 habitAdapter.updateData(it)
@@ -117,5 +116,6 @@ class HabitMenu : AppCompatActivity() {
         // Show a Toast message
         Toast.makeText(this, "Habit Completed!", Toast.LENGTH_SHORT).show()
     }
+
 }
 
