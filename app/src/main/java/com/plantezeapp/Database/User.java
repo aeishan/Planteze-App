@@ -29,8 +29,6 @@ import com.plantezeapp.R;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.DatabaseError;
-
 
 public class User{
     private String uID;
@@ -65,26 +63,41 @@ public class User{
     }
 
     public String getuID() {
+
         return uID;
     }
 
     public void setuID(String uID) {
+
         this.uID = uID;
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
+    public void setCarbonFootprint(CarbonFootprint carbonFootprint) {
+        this.carbonFootprint = carbonFootprint;
+    }
+
     public CarbonFootprint getCarbonFootprint() {
+
         return carbonFootprint;
     }
 
+    public void setEcoTracker(EcoTracker ecoTracker) {
+
+        this.ecoTracker = ecoTracker;
+    }
+
     public EcoTracker getEcoTracker() {
+
         return ecoTracker;
     }
 
@@ -93,8 +106,10 @@ public class User{
     }
 
     public void setDone(boolean done) {
+
         this.done = done;
     }
+
 
 }
 

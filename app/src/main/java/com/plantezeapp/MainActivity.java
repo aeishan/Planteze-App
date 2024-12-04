@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.plantezeapp.AnnualCarbonFootprint.CarbonFootprintBreakdown;
 import com.plantezeapp.AnnualCarbonFootprint.CarbonFootprintBreakdown2;
 
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -36,5 +37,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
     }
 }
+
+

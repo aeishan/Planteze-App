@@ -22,6 +22,8 @@ public class EcoTracker {
         this.totalEmissionPerDay = new HashMap<>();
         this.activityByDate = new HashMap<>();
         this.emissionByDateAndCat = new HashMap<>();
+        this.activityByDate = new HashMap<>();
+        this.emissionByDateAndCat = new HashMap<>();
     }
 
     public String getUserId() {
@@ -32,6 +34,7 @@ public class EcoTracker {
     }
 
     //EmissionPerDay Based on Date
+    //EmissionPerDay Based on Date
     public Map<String, Double> getTotalEmissionPerDay() {
         return totalEmissionPerDay;
     }
@@ -39,7 +42,6 @@ public class EcoTracker {
     public void setTotalEmissionPerDay(Map<String, Double> totalEmissionPerDay) {
         this.totalEmissionPerDay = totalEmissionPerDay;
     }
-
     public double getEmissionForDay(String date) {
         return totalEmissionPerDay.getOrDefault(date, 0.0);
     }

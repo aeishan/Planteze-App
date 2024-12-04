@@ -118,6 +118,7 @@ public class FirebaseHelper {
         userRef.child("onboarding").setValue(isDone);
     }
 
+
     public interface UserFetchListener {
         void onUserFetched(User user);
 
