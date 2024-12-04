@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/grey_white"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_white"
     tools:context=".Track.Tracker">
 
 
@@ -13,29 +13,23 @@
         android:id="@+id/goToHabit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="84dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/teal"
         android:text="Habit Menu"
-        app:layout_constraintBottom_toTopOf="@+id/details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toEndOf="@+id/track"
-        app:layout_constraintTop_toBottomOf="@+id/dailyEmission"
-        app:layout_constraintVertical_bias="0.788" />
+        app:layout_constraintTop_toBottomOf="@+id/dailyEmission" />
 
     <Button
         android:id="@+id/track"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="88dp"
         android:backgroundTint="@color/teal"
         android:text="Track"
-        app:layout_constraintBottom_toTopOf="@+id/calendar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dailyEmission"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintTop_toBottomOf="@+id/dailyEmission" />
 
     <TextView
         android:id="@+id/dailyEmission"
@@ -55,25 +49,23 @@
         android:id="@+id/calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="204dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="52dp"
         android:backgroundTint="@color/teal"
         android:text="Calendar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/details"
-        app:layout_constraintHorizontal_bias="0.259"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/track" />
 
     <Button
         android:id="@+id/details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="204dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="@color/teal"
         android:text="View Details"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.831"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/goToHabit" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -89,34 +81,34 @@
         android:id="@+id/moveToBreakdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="#009999"
         android:text="Review Breakdown"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.934"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details" />
 
     <Button
         android:id="@+id/moveToSurvey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="224dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="52dp"
         android:backgroundTint="#009999"
         android:text="Onboarding Survey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar" />
 
     <Button
         android:id="@+id/moveToGauge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="52dp"
         android:backgroundTint="#009999"
         android:text="Eco Gauge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
