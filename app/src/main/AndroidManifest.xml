@@ -39,11 +39,14 @@
             android:name=".AnnualCarbonFootprint.IntroPage"
             android:exported="false" />
         <activity
+            android:name=".EcoGauge.LineGraph"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".UserLogin.WelcomePage"
-            android:exported="true">
+            <activity
+                android:name=".UserLogin.WelcomePage"
+                android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -125,7 +125,6 @@ public class RegisterAccountPage extends AppCompatActivity {
                                 }
                             }
                         });
-
             }
         });
 

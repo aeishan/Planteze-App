@@ -50,9 +50,8 @@ public class EcoTracker {
     public void setEmissionForDateAndCat(Map<String, Map<String, Double>> emissionByDateAndCat){
         this.emissionByDateAndCat = emissionByDateAndCat;
     }
-    public double getEmissionForDateAndCat(String date, String category, double emission){
-        return emissionByDateAndCat.get(date).put(category, emission);
-
+    public Map<String, Map<String, Double>> getEmissionByDateAndCat() {
+        return emissionByDateAndCat;
     }
     public void addOrUpdateEmissionByDateAndCat(String date, String category, double emission) {
         emissionByDateAndCat.putIfAbsent(date, new HashMap<>());

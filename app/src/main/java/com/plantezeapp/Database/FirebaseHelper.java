@@ -2,8 +2,6 @@ package com.plantezeapp.Database;
 
 import android.util.Log;
 
-import android.util.Log;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DataSnapshot;
@@ -114,34 +112,16 @@ public class FirebaseHelper {
         userRef.child("onboarding").setValue(isDone);
     }
 
+
     public interface UserFetchListener {
         void onUserFetched(User user);
         void onFetchFailed(String errorMessage);
     }
 
 }
-        userRef.child("ecoTrackerCompleted").setValue(true);
-        userRef.child("carbonFootprintCompleted").setValue(true);
-
-       // boolean onboardingCompleted = ecoTrackerCompleted && carbonFootprintCompleted;
-       // userRef.child("onboardingCompleted").setValue(onboardingCompleted);
 
 
-    }
 
-    public interface UserFetchListener {
-        void onUserFetched(User user);
-        void onFetchFailed(String errorMessage);
 
-    }
-
-    public interface OnboardingStatusListener {
-        void onStatusChecked(boolean isCompleted);
-    }
-
-    public interface CompletionStatusListener{
-        void onCompletionStatusChecked(boolean isCompleted);
-    }
-}
 
 

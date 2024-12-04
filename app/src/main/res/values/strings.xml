@@ -4,4 +4,10 @@
     <string name="register">Register!</string>
     <string name="email">email</string>
     <string name="password">passsword</string>
+    <string-array name="time_period_options">
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+    <string name="select_time_period">Select a Time Period</string>
 </resources>
