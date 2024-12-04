@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#d8dbe2"
+    tools:context=".AnnualCarbonFootprint.CarbonFootprintBreakdown">
+
+    <TextView
+        android:id="@+id/pieChartTitle"
+        android:layout_width="410dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Your totla emission is 100kg/year"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="363dp"
+        android:layout_height="601dp"
+        app:layout_constraintBottom_toTopOf="@+id/toComparisonPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/toComparisonPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Compare To National/Global Averages"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:backgroundTint="#009999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pieChartTitle"
+        app:layout_constraintVertical_bias="0.942" />
+</androidx.constraintlayout.widget.ConstraintLayout>

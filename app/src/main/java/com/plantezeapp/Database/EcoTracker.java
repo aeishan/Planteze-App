@@ -22,6 +22,8 @@ public class EcoTracker {
         this.totalEmissionPerDay = new HashMap<>();
         this.activityByDate = new HashMap<>();
         this.emissionByDateAndCat = new HashMap<>();
+        this.activityByDate = new HashMap<>();
+        this.emissionByDateAndCat = new HashMap<>();
     }
 
     public String getUserId() {
@@ -31,6 +33,7 @@ public class EcoTracker {
         this.userId = userId;
     }
 
+    //EmissionPerDay Based on Date
     //EmissionPerDay Based on Date
     public Map<String, Double> getTotalEmissionPerDay() {
         return totalEmissionPerDay;
@@ -42,18 +45,19 @@ public class EcoTracker {
     public double getEmissionForDay(String date) {
         return totalEmissionPerDay.getOrDefault(date, 0.0);
     }
+
     public void addOrUpdateEmission(String date, double emission) {
         totalEmissionPerDay.put(date, emission);
     }
 
     //Emission Based on Date and Category
-    public void setEmissionForDateAndCat(Map<String, Map<String, Double>> emissionByDateAndCat){
+    public void setEmissionByDateAndCat(Map<String, Map<String, Double>> emissionByDateAndCat){
         this.emissionByDateAndCat = emissionByDateAndCat;
     }
-    public double getEmissionForDateAndCat(String date, String category, double emission){
-        return emissionByDateAndCat.get(date).put(category, emission);
-
+    public Map<String, Map<String, Double>> getEmissionByDateAndCat() {
+        return emissionByDateAndCat;
     }
+
     public void addOrUpdateEmissionByDateAndCat(String date, String category, double emission) {
         emissionByDateAndCat.putIfAbsent(date, new HashMap<>());
         emissionByDateAndCat.get(date).put(category, emission);
@@ -74,9 +78,9 @@ public class EcoTracker {
         activityByDate.get(date).get(category).put(activityId, activity);
     }
 
-    public Map<String, Object> getActivity(String date, String activityId) {
-        if (activityByDate.containsKey(date) && activityByDate.get(date).containsKey(activityId)) {
-            return (Map<String, Object>) activityByDate.get(date).get(activityId);
+    public Map<String, Double> getActivity(String date, String category, String activityId) {
+        if (activityByDate.containsKey(date) && activityByDate.get(date).containsKey(category) && activityByDate.get(date).get(category).containsKey(activityId)) {
+            return (Map<String, Double>) activityByDate.get(date).get(category).get(activityId);
         }
         return null;
     }
@@ -102,6 +106,7 @@ public class EcoTracker {
         result.put("userId", userId);
         result.put("activityByDate", activityByDate);
         result.put("totalEmissionPerDay", totalEmissionPerDay);
+        result.put("emissionByDateAndCat", emissionByDateAndCat);
         return result;
     }
 }

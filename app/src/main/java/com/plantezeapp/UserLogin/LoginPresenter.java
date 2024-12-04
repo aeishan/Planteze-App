@@ -1,10 +1,17 @@
 package com.plantezeapp.UserLogin;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.plantezeapp.Database.User;
+import com.plantezeapp.Database.FirebaseHelper;
+import com.plantezeapp.MainActivity;
 
 public class LoginPresenter implements LoginContract.Presenter, LoginContract.onLoginListener{
     private LoginContract.View mLoginView;
@@ -56,6 +63,22 @@ public class LoginPresenter implements LoginContract.Presenter, LoginContract.on
         mLoginView.onLoginFailure(message);
 
     }
+
+    @Override
+    public void onUserFetched(User user) {
+        mLoginView.onUserFetched(user);
+    }
+
+    @Override
+    public void onFetchError(String error) {
+        mLoginView.onFetchError(error);
+    }
+
+    /*@Override
+    public void onFetchFailed(String errorMessage) {
+        mLoginView.onFetchError(errorMessage);
+    }*/
+
 
 
 }

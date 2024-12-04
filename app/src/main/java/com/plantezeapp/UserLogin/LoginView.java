@@ -15,12 +15,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.plantezeapp.Database.User;
 import com.plantezeapp.MainActivity;
+import com.plantezeapp.AnnualCarbonFootprint.IntroPage;
+import com.plantezeapp.EcoGauge.LineGraph;
 import com.plantezeapp.R;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseUser;
-
-
+import com.plantezeapp.Database.FirebaseHelper;
+import com.plantezeapp.Track.Tracker;
 
 public class LoginView extends AppCompatActivity implements LoginContract.View {
     private EditText editTextEmail, editTextPassword;
@@ -80,8 +85,6 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     public void onLoginSuccess(FirebaseUser user) {
         // Navigate to next screen or show success message
         Toast.makeText(LoginView.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class); //This class needs to be changed to the class with the maindashboard
-        startActivity(intent);
         finish();
 
     }
@@ -97,6 +100,26 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     public void setPasswordError(String error) {
         editTextPassword.setError(error);
     }
+
+    @Override
+    public void onUserFetched(User user) {
+        Log.d("THIS ONE", "YES??");
+        // You already defined this method to navigate to MainActivity
+        Intent intent = new Intent(getApplicationContext(), Tracker.class);
+        Log.d("THIS ONE", "MADE IT");
+        startActivity(intent);
+    }
+
+    @Override
+    public void onFetchError(String error) {
+        Log.d("THIS ONE", "YES??");
+        // You already defined this method to navigate to IntroPage
+        Intent intent = new Intent(getApplicationContext(), IntroPage.class);
+        Log.d("THIS ONE", "MADE IT");
+        startActivity(intent);
+
+    }
+
 
 
 

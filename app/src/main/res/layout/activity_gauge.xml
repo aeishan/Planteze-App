@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d8dbe2"
+    tools:context=".Track.Gauge">
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="321dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="48dp"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Enter start and end dates in the form (YYYY-MM-DD) to calculate your C02e emissions within the time period."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/userInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:hint="Enter Start Date"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <EditText
+        android:id="@+id/userInput2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter End Date"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/calculateTotal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInput" />
+
+    <Button
+        android:id="@+id/calculateTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate Emission!"
+        android:backgroundTint="#009999"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userInput" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

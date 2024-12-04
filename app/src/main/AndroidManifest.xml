@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permission to post notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Your other permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,24 +18,116 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantezeApp"
         tools:targetApi="31">
+
+        <!-- Register your activities -->
+        <activity
+            android:name=".HabitSuggestions.Activities.HabitCreation"
+            android:exported="false" />
+        <activity
+            android:name=".HabitSuggestions.Activities.HabitFilter"
+            android:exported="false" />
+        <activity
+            android:name=".Calendar.ViewDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ecoGaugeBreakdown"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Gauge"
+            android:exported="false" />
+        <activity
+            android:name=".Calendar.CalendarTrack"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Tracker"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.Comparison2"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.CarbonFootprintBreakdown2"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.Comparison"
+            android:exported="false" />
         <activity
             android:name=".UserLogin.ConfirmationSignupPage"
             android:exported="false" />
         <activity
-            android:name=".UserLogin.LoginView"
+            android:name=".UserLogin.LoginAccountPage"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Other"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Bills"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Electronics"
+            android:exported="false" />
+        <activity
+            android:name=".Track.ShoppingItems.Clothing"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.Flight"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.Walking"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.PublicTransportation"
+            android:exported="false" />
+        <activity
+            android:name=".Track.TransportationTypes.PersonalVehicle"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Transportation"
+            android:exported="false"
+            android:theme="@style/Theme.PlantezeApp" />
+        <activity
+            android:name=".Track.Shopping"
+            android:exported="false" />
+        <activity
+            android:name=".Track.FoodConsumption"
+            android:exported="false" />
+        <activity
+            android:name=".Track.Track"
             android:exported="false" />
         <activity
             android:name=".UserLogin.RegisterAccountPage"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AnnualCarbonFootprint.CarbonFootprintBreakdown"
             android:exported="false" />
         <activity
-            android:name=".UserLogin.WelcomePage"
-            android:exported="true">
+            android:name=".AnnualCarbonFootprint.QuestionPage"
+            android:exported="false" />
+        <activity
+            android:name=".AnnualCarbonFootprint.IntroPage"
+            android:exported="false" />
+        <activity
+            android:name=".EcoGauge.LineGraph"
+            android:exported="false"/>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".HabitSuggestions.Activities.HabitMenu"
+            android:exported="false"/>
+        <activity
+            android:name=".UserLogin.LoginView"
+            android:exported="false"/>
+
+            <!-- Add the NotificationReceiver inside <application> -->
+        <receiver android:name=".HabitSuggestions.NotificationReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+                android:name=".UserLogin.WelcomePage"
+                android:exported="true"  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
