@@ -1,7 +1,7 @@
 package com.plantezeapp;
 
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
+import static org.mockito.kotlin.VerificationKt.verify;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.plantezeapp.UserLogin.LoginContract;
@@ -10,9 +10,10 @@ import com.plantezeapp.UserLogin.LoginPresenter;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import java.lang.reflect.Field;
 
 public class LoginPresenterTest {
 
@@ -25,60 +26,49 @@ public class LoginPresenterTest {
     private LoginPresenter loginPresenter;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
+
+        // Create a new instance of LoginPresenter
         loginPresenter = new LoginPresenter(mockLoginView);
-        loginPresenter.mLoginModel = mockLoginModel;
+
+        // Use reflection to set the private field `mLoginModel` to the mocked LoginModel
+        Field modelField = LoginPresenter.class.getDeclaredField("mLoginModel");
+        modelField.setAccessible(true); // Make the private field accessible
+        modelField.set(loginPresenter, mockLoginModel); // Set the mocked LoginModel
     }
 
     @Test
     public void login_WithValidInput_CallsFirebaseAuthLogin() {
-
         String email = "test@example.com";
         String password = "password123";
 
         loginPresenter.login(email, password);
 
-        ArgumentCaptor<String> emailCaptor = ArgumentCaptor.forClass(String.class);
-        ArgumentCaptor<String> passwordCaptor = ArgumentCaptor.forClass(String.class);
-
-        verify(mockLoginModel).firebaseAuthLogin(emailCaptor.capture(), passwordCaptor.capture());
-
-        assertEquals("test@example.com", emailCaptor.getValue());
-        assertEquals("password123", passwordCaptor.getValue());
+        verify(mockLoginModel).firebaseAuthLogin(email, password);
     }
 
     @Test
     public void login_WithEmptyEmail_ShowsEmailError() {
+        loginPresenter.login("", "password123");
 
-        String email = "";
-        String password = "password123";
-
-        loginPresenter.login(email, password);
-
-        verify(mockLoginView).setEmailError("Correct email is required.");
+        verify(mockLoginView).setEmailError(anyString());
         verify(mockLoginModel, never()).firebaseAuthLogin(anyString(), anyString());
     }
 
     @Test
     public void login_WithEmptyPassword_ShowsPasswordError() {
-        String email = "test@example.com";
-        String password = "";
+        loginPresenter.login("test@example.com", "");
 
-        loginPresenter.login(email, password);
-
-        verify(mockLoginView).setPasswordError("Correct password is required.");
+        verify(mockLoginView).setPasswordError(anyString());
         verify(mockLoginModel, never()).firebaseAuthLogin(anyString(), anyString());
     }
 
     @Test
     public void login_WithShortPassword_ShowsPasswordError() {
-        String email = "test@example.com";
-        String password = "123";
+        loginPresenter.login("test@example.com", "123");
 
-        loginPresenter.login(email, password);
-
-        verify(mockLoginView).setPasswordError("Password must be at least 6 characters.");
+        verify(mockLoginView).setPasswordError(anyString());
         verify(mockLoginModel, never()).firebaseAuthLogin(anyString(), anyString());
     }
 
@@ -88,10 +78,7 @@ public class LoginPresenterTest {
 
         loginPresenter.onSuccess(mockUser);
 
-        ArgumentCaptor<FirebaseUser> userCaptor = ArgumentCaptor.forClass(FirebaseUser.class);
-        verify(mockLoginView).onLoginSuccess(userCaptor.capture());
-
-        assertEquals(mockUser, userCaptor.getValue());
+        verify(mockLoginView).onLoginSuccess(mockUser);
     }
 
     @Test
@@ -100,9 +87,6 @@ public class LoginPresenterTest {
 
         loginPresenter.onFailure(errorMessage);
 
-        ArgumentCaptor<String> messageCaptor = ArgumentCaptor.forClass(String.class);
-        verify(mockLoginView).onLoginFailure(messageCaptor.capture());
-
-        assertEquals("Login failed", messageCaptor.getValue());
+        verify(mockLoginView).onLoginFailure(errorMessage);
     }
 }

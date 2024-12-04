@@ -54,6 +54,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("com.google.firebase:firebase-database")
+    testImplementation ("org.mockito:mockito-core:5.5.0")
     testImplementation ("androidx.test.ext:junit:1.1.5")
     testImplementation ("org.robolectric:robolectric:4.10.3") //Used for EcoGaugeTest (delete afterwards)
     testImplementation ("org.mockito:mockito-core:4.8.0") //Used for EcoGaugeTest (delete afterwards)
@@ -81,6 +82,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
 
     //Mockito
+    testImplementation("org.mockito:mockito-core:5.6.2") // Mockito core library
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0") // Kotlin extensions
     testImplementation("org.mockito:mockito-android:4.4.0")
 
