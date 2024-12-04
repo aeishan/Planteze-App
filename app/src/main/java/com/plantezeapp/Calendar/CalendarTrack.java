@@ -128,6 +128,7 @@ public class CalendarTrack extends AppCompatActivity implements FirebaseHelper.U
     private void updateEmission(){
         updateTotal();
         TextView total = findViewById(R.id.emission);
+
         String rounded = String.format("%.2f", tracker.getEmissionForDay(formattedDate));
         total.setText("Total Emission: " + rounded + "kg of CO2");
     }

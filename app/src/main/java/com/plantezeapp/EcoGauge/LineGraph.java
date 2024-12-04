@@ -182,7 +182,6 @@ public class LineGraph extends AppCompatActivity  implements FirebaseHelper.User
             countryValue /= 12;
         }
 
-        Toast.makeText(LineGraph.this, averageEmissions + "TEST", Toast.LENGTH_SHORT).show();
         Log.d("LineGraph", "Average emissions for selected period: " + averageEmissions + " kg");
 
         percentageCountry = Math.abs(((averageEmissions - countryValue)/countryValue)*100);

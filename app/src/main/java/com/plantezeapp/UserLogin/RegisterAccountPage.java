@@ -41,7 +41,7 @@ public class RegisterAccountPage extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             mAuth.signOut();
-            startActivity(new Intent(getApplicationContext(), MainActivity.class)); //Checks the user
+            startActivity(new Intent(getApplicationContext(), RegisterAccountPage.class)); //Checks the user
             finish();
         }
 
