@@ -24,6 +24,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.plantezeapp.EcoGauge.LineGraph;
 import com.plantezeapp.MainActivity;
 
 import com.plantezeapp.R;
@@ -46,7 +47,7 @@ public class ecoGaugeBreakdown extends AppCompatActivity {
         toAvgPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ecoGaugeBreakdown.this, ecoGaugeBreakdown.class);
+                Intent intent=new Intent(ecoGaugeBreakdown.this, LineGraph.class);
                 startActivity(intent);
             }
         });

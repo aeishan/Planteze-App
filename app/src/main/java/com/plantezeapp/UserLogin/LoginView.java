@@ -25,6 +25,7 @@ import android.util.Log;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.plantezeapp.Database.FirebaseHelper;
+import com.plantezeapp.Track.Tracker;
 
 public class LoginView extends AppCompatActivity implements LoginContract.View {
     private EditText editTextEmail, editTextPassword;
@@ -104,7 +105,7 @@ public class LoginView extends AppCompatActivity implements LoginContract.View {
     public void onUserFetched(User user) {
         Log.d("THIS ONE", "YES??");
         // You already defined this method to navigate to MainActivity
-        Intent intent = new Intent(getApplicationContext(), LineGraph.class);
+        Intent intent = new Intent(getApplicationContext(), Tracker.class);
         Log.d("THIS ONE", "MADE IT");
         startActivity(intent);
     }

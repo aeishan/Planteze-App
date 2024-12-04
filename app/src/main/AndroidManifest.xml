@@ -109,6 +109,9 @@
         <activity
             android:name=".HabitSuggestions.Activities.HabitMenu"
             android:exported="false"/>
+        <activity
+            android:name=".UserLogin.LoginView"
+            android:exported="false"/>
 
             <activity
                     android:name=".UserLogin.WelcomePage"

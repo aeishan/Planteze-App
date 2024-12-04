@@ -1,8 +1,10 @@
 package com.plantezeapp.EcoGauge;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +26,8 @@ import com.plantezeapp.Database.EcoTracker;
 import com.plantezeapp.Database.FirebaseHelper;
 import com.plantezeapp.Database.User;
 import com.plantezeapp.R;
+import com.plantezeapp.Track.Track;
+import com.plantezeapp.Track.Tracker;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,6 +60,7 @@ public class LineGraph extends AppCompatActivity  implements FirebaseHelper.User
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_line_graph);
 
+        Button back;
         lineChart = findViewById(R.id.lineChart);
         fetchGraphButton = findViewById(R.id.fetchGraphButton);
         mAuth = FirebaseAuth.getInstance();
@@ -85,6 +90,15 @@ public class LineGraph extends AppCompatActivity  implements FirebaseHelper.User
         fetchGraphButton.setEnabled(false);
         fetchGraphButton.setOnClickListener(v -> fetchGraphData());
         Log.d("LineGraph", "Fetch graph button clicked.");
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LineGraph.this, Tracker.class);
+                startActivity(intent);
+            }
+        });
 
         userFire = FirebaseAuth.getInstance().getCurrentUser();
         help = new FirebaseHelper();

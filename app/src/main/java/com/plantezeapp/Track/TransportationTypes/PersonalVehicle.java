@@ -135,14 +135,19 @@ public class PersonalVehicle extends AppCompatActivity implements FirebaseHelper
                         activity = (HashMap<String, Double>) activities.get(date).get("Transportation").get("Personal Vehicle");
                     }
 
+                    Double emission = 0.0; //Information.EMISSION_FACTOR.get(item) * Double.parseDouble(distance);
 
                     if(car == null || car.equals("I don’t know")){
+                        emission = Information.EMISSION_FACTOR.get("Gasoline") * Double.parseDouble(distance);
                         activity.put("Gasoline", Double.parseDouble(distance));
                         tracker.addActivity(date,"Transportation", "Personal Vehicle", activity);
+                        Toast.makeText(PersonalVehicle.this, emission + " kg of CO2 emitted", Toast.LENGTH_SHORT).show();
                     }
                     else{
+                        emission = Information.EMISSION_FACTOR.get(car) * Double.parseDouble(distance);
                         activity.put(car, Double.parseDouble(distance));
                         tracker.addActivity(date,"Transportation", "Personal Vehicle", activity);
+                        Toast.makeText(PersonalVehicle.this, emission + " kg of CO2 emitted", Toast.LENGTH_SHORT).show();
                     }
                     help.saveUser(user);
 
