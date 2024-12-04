@@ -79,7 +79,6 @@ public class ecoGaugeBreakdown extends AppCompatActivity {
         }
 
         textView.setText("Your total annual carbon emission from " + Gauge.start + " to "  + Gauge.end + " is " + total + " kg.\nHere is your breakdown:");
-        Log.d("WE GOT IT", "YEAAAA");
 
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, " ");
@@ -113,9 +112,7 @@ public class ecoGaugeBreakdown extends AppCompatActivity {
                     String label = selectedPiece.getLabel();
 
 
-                    Toast.makeText(
-                            getApplicationContext(),
-                            label + ": " + realValue + " kg",
+                    Toast.makeText(getApplicationContext(), label + ": " + realValue + " kg",
                             Toast.LENGTH_LONG
                     ).show();
                 }

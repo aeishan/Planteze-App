@@ -80,9 +80,7 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
 
         CarbonFootprint cfoot = user.getCarbonFootprint();
 
-        Log.d("TOTAL", "CHECK " + cfoot.getAnswer("transportationE"));
         transE = Double.parseDouble(cfoot.getAnswer("transportationE"));
-        Log.d("TOTAL", "CHECK " + transE);
         foodE = Double.parseDouble(cfoot.getAnswer("foodE"));
         housingE = Double.parseDouble(cfoot.getAnswer("housingE"));
         consumptionE = Double.parseDouble(cfoot.getAnswer("consumptionE"));
@@ -103,7 +101,6 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
 
         TextView textView = findViewById(R.id.pieChartTitle);
         double[] values = {transE, foodE, housingE, consumptionE};
-        Log.d("TOTAL", "" + transE);
         String[] labels =  {"Transportation", "Food", "Housing", "Consumption"};
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         double difference = 0;
@@ -167,9 +164,7 @@ public class CarbonFootprintBreakdown extends AppCompatActivity implements Fireb
                     float roundedPercentage = Float.parseFloat(newValue2);
 
 
-                    Toast.makeText(
-                            getApplicationContext(),
-                            label + ": " + realValue + " kg/year\nApprox  " + roundedPercentage + "% of total emissions",
+                    Toast.makeText(getApplicationContext(), label + ": " + realValue + " kg/year\nApprox  " + roundedPercentage + "% of total emissions",
                             Toast.LENGTH_LONG
                     ).show();
                 }

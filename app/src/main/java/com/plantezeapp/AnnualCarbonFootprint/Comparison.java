@@ -96,7 +96,6 @@ public class Comparison extends AppCompatActivity {
 
         textView.setText("Here is how you (blue) compare to the average resident of " + IntroPage.item +
                 " (red) and the global targets to reduce climate change (black):");
-        Log.d("WE GOT IT", "YEAAAA");
 
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "Values");

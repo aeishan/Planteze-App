@@ -112,7 +112,6 @@ public class Comparison2 extends AppCompatActivity implements FirebaseHelper.Use
 
         textView.setText("Here is how you (blue) compare to the average resident of " + CarbonFootprintBreakdown.country +
                 " (red) and the global targets to reduce climate change (black):");
-        Log.d("WE GOT IT", "YEAAAA");
 
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "Values");

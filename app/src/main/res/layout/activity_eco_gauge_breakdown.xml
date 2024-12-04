@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#d8dbe2"
     tools:context=".Track.ecoGaugeBreakdown">
 
     <TextView
@@ -14,7 +15,8 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Your totla emission from date1 to date 2 is 100 kg."
-        android:textColor="@color/black"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -34,6 +36,7 @@
         android:id="@+id/toAvgPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#009999"
         android:text="Check Emission Trends"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

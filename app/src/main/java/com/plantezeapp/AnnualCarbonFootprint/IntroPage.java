@@ -91,7 +91,6 @@ public class IntroPage extends AppCompatActivity {
 
     private List<String> readFirstColumnFromCSV(String fileName) {
         List<String> dataList = new ArrayList<>();
-        Log.d("Reader1", "Data List: " + "heyhey");
 
         try {
             InputStream inputStream = getAssets().open(fileName); // opens the file from the assets folder
@@ -99,20 +98,17 @@ public class IntroPage extends AppCompatActivity {
             BufferedReader reader = new BufferedReader(inputStreamReader);
             String line;
 
-            Log.d("Readerrrr", "Data List: " + "heyhey");
 
             int count = 0;
 
             while ((line = reader.readLine()) != null) {
                 String[] columns = line.split(",");
-                Log.d("CSVReaderrrr", "Data List: " + columns[0]);
                 if (columns.length > 0) {
                     dataList.add(columns[0].trim());
 
                     if (count != 0) {
                         double value = Double.parseDouble(columns[1].trim());
                         countryValues.put(columns[0].trim(), value);
-                        Log.d("valuesHere", "look: " + countryValues.get(columns[0].trim()));
                     }
                     count++;
                 }
@@ -122,11 +118,9 @@ public class IntroPage extends AppCompatActivity {
 
         }
         catch (Exception e) {
-            Log.d("Reader2", "Data List: " + "heyhey");
             System.out.println("You have an error: " + e);
         }
 
-        Log.d("CSVReader", "Data List: " + dataList);
         return dataList;
     }
 }

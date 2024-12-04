@@ -166,53 +166,42 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                 } else {
                     if (currentQuestionIndex == 5){
                         transportationEmission = transportationEmission + sFlights.get(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + transportationEmission, Toast.LENGTH_SHORT).show();
-
                     }
                     else if (currentQuestionIndex == 6){
                         transportationEmission = transportationEmission + lFlights.get(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + transportationEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 3 && selectedAnswer != "Never"){
                         createPublicTransportEmission(selectedAnswer);
                     }
                     else if (currentQuestionIndex == 4 && count != 0){
                         transportationEmission = transportationEmission + transportationCO2.get(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + transportationEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 1){
                         createCarEmission(selectedAnswer);
                     }
                     else if (currentQuestionIndex == 2){
                         transportationEmission = transportationEmission + carC02.get(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + transportationEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 7 && !selectedAnswer.equals("Meat-based (eat all types of animal products)")){
                         diet(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + foodEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 7){
                         createMeatEmissions();
                     }
                     else if (currentQuestionIndex == 8){
                         foodEmission = foodEmission + meat_b.get(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + foodEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 9){
                         foodEmission = foodEmission + meat_p.get(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + foodEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 10){
                         foodEmission = foodEmission + meat_c.get(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + foodEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 11){
                         foodEmission = foodEmission + meat_f.get(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + foodEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 12){
                         wasteFood(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + foodEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 13){
                         if (selectedAnswer.equals("Other")){
@@ -245,7 +234,6 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                         else{
                             housingEmission = housingEmission + createJSON(home, occupants, area, bill, heat_home);
                         }
-                        Toast.makeText(QuestionPage.this, "first: " + housingEmission, Toast.LENGTH_SHORT).show();
 
                         if (selectedAnswer.equals("Other")){
                             double val2 = createJSON(home, occupants, area, bill, "Natural Gas") + createJSON(home, occupants, area, bill, "Electricity") + createJSON(home, occupants, area, bill, "Oil") + createJSON(home, occupants, area, bill, "Propane") + createJSON(home, occupants, area, bill, "Solar");
@@ -257,7 +245,6 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                             housingEmission = housingEmission + createJSON(home, occupants, area, bill, selectedAnswer);
                         }
 
-                        Toast.makeText(QuestionPage.this, "second " + housingEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 19){
                         if (selectedAnswer.equals("Yes, primarily (more than 50% of energy use)")){
@@ -266,21 +253,17 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                         else if (selectedAnswer.equals("Yes, partially (less than 50% of energy use)")){
                             housingEmission = housingEmission - 4000;
                         }
-                        Toast.makeText(QuestionPage.this, "hi " + housingEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 20){
                         consumptionEmission = consumptionEmission + clothing.get(selectedAnswer);
                         clothesFrequency = selectedAnswer;
-                        Toast.makeText(QuestionPage.this, "hi " + consumptionEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 21){
                         ecoFriendlyProducts(selectedAnswer);
-                        Toast.makeText(QuestionPage.this, "hi " + consumptionEmission, Toast.LENGTH_SHORT).show();
                     }
                     else if (currentQuestionIndex == 22){
                         consumptionEmission = consumptionEmission + eDevices.get(selectedAnswer);
                         numDevices = selectedAnswer;
-                        Toast.makeText(QuestionPage.this, "hi " + consumptionEmission, Toast.LENGTH_SHORT).show();
                     }
 
                     if (selectedAnswer == "No" && currentQuestionIndex == 0){
@@ -296,8 +279,6 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
             else{
                 reduceConsumptionEmission(numDevices, selectedAnswer);
                 reduceConsumptionEmission2(clothesFrequency, selectedAnswer);
-                Toast.makeText(QuestionPage.this, "hi " + consumptionEmission, Toast.LENGTH_SHORT).show();
-                Toast.makeText(QuestionPage.this, "You're DONE!!!", Toast.LENGTH_SHORT).show();
 
                 checkForNegatives();
 
@@ -308,13 +289,9 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
                 answers.put("country", IntroPage.item);
                 answers.put("countryValue", "" + IntroPage.countryValues.get(IntroPage.item));
 
-                Log.d("MainActivity", "we here!!");
                 userFire = FirebaseAuth.getInstance().getCurrentUser();
-                Log.d("MainActivity", "we here2!!");
                 help = new FirebaseHelper();
-                Log.d("MainActivity", "we here3!!");
                 help.fetchUser(userFire.getUid(), this);
-                Log.d("MainActivity", "we here4!!");
 
                 Intent intent=new Intent(QuestionPage.this, CarbonFootprintBreakdown2.class);
                 startActivity(intent);
@@ -326,8 +303,6 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
         else{
             selectedAnswer = clickedButton.getText().toString();
             clickedButton.setBackgroundColor(Color.parseColor("#009999"));
-            Toast.makeText(QuestionPage.this, "You selected: " + clickedButton.getText(), Toast.LENGTH_SHORT).show();
-
         }
 
     }
@@ -602,7 +577,6 @@ public class QuestionPage extends AppCompatActivity implements View.OnClickListe
         else{
             cfoot = user.getCarbonFootprint();
         }
-        Log.d("MainActivity", "is NULL?? : " + cfoot);
 
 
         cfoot.setAnswers(answers);

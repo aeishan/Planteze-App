@@ -101,8 +101,6 @@ public class CarbonFootprintBreakdown2 extends AppCompatActivity {
         globalPercentage = globalDifference / 2000.0;
 
         textView.setText("Your total annual carbon emission is: " + total + " kg/year.\nHere is your breakdown:");
-        Log.d("WE GOT IT", "YEAAAA");
-
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries, " ");
 
@@ -141,9 +139,7 @@ public class CarbonFootprintBreakdown2 extends AppCompatActivity {
                     float roundedPercentage = Float.parseFloat(newValue2);
 
 
-                    Toast.makeText(
-                            getApplicationContext(),
-                            label + ": " + realValue + " kg/year\nApprox  " + roundedPercentage + "% of total emissions",
+                    Toast.makeText(getApplicationContext(), label + ": " + realValue + " kg/year\nApprox  " + roundedPercentage + "% of total emissions",
                             Toast.LENGTH_LONG
                     ).show();
                 }

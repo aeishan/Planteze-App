@@ -51,7 +51,6 @@ public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetch
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Log.d("CHECK HERE", "YEAUEA");
         calc = findViewById(R.id.calculateTotal);
         input = findViewById(R.id.userInput);
         input2 = findViewById(R.id.userInput2);
@@ -92,7 +91,6 @@ public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetch
                                     startActivity(intent);
                                 }
                                 else{
-                                    Log.d("THIS ONE", "" + ecoT);
                                     foodE = 0;
                                     transE = 0;
                                     otherE = 0;
@@ -176,8 +174,7 @@ public class Gauge extends AppCompatActivity implements FirebaseHelper.UserFetch
 
 
 
-        Log.d("THIS ONE NOW", "food: " + foodE + ", trans: " + transE + ", other: " + otherE);
-        Toast.makeText(Gauge.this, "DONE!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Gauge.this, "DONE!", Toast.LENGTH_SHORT).show();
 
 
 
